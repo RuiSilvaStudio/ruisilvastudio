@@ -1,0 +1,156 @@
+---
+import Base from '../../layouts/Base.astro';
+import SplitLines from '../../components/SplitLines.astro';
+import Image from '../../components/Image.astro';
+import { PIECES, SITE } from '../../lib/site';
+
+export function getStaticPaths() {
+  return PIECES.map((piece) => ({ params: { slug: piece.slug }, props: { piece } }));
+}
+
+const { piece } = Astro.props;
+const idx = PIECES.findIndex((p) => p.slug === piece.slug);
+const suggestionPiece = piece.suggestion ? PIECES.find((p) => p.slug === piece.suggestion!.pieceSlug) : null;
+
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: piece.name,
+  description: piece.description[0],
+  image: piece.images.map((i) => `${SITE.url}${i}`),
+  brand: { '@type': 'Brand', name: SITE.name },
+  manufacturer: {
+    '@type': 'Organization',
+    name: SITE.name,
+    address: { '@type': 'PostalAddress', addressCountry: 'PT' },
+  },
+  material: piece.materials.join('; '),
+  productionDate: 'Made to order',
+  category: 'Collectible Furniture',
+};
+---
+
+<Base
+  title={piece.name}
+  description={`${piece.name} — ${piece.short} Handcrafted in Portugal in oak and steel. Made to order.`}
+  image={piece.images[0]}
+  darkHeader
+  jsonLd={productLd}
+>
+  <!-- HERO -->
+  <section class="relative flex min-h-[92svh] items-end overflow-hidden bg-night" data-hero>
+    <div class="absolute inset-0">
+      <img src={piece.images[0]} alt={`${piece.name} — hero view`} class="absolute inset-0 h-full w-full object-cover" data-hero-img fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-night/85 via-night/15 to-night/35"></div>
+    </div>
+    <div class="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-20 md:px-10">
+      <div class="mb-6 flex items-center gap-4 text-ivory/60" data-hero-fade>
+        <a href="/lusitano/story" class="label hover:text-brass transition-colors">Lusitano Collection</a>
+        <span class="text-brass">/</span>
+        <span class="label text-brass">0{idx + 1}</span>
+      </div>
+      <h1 class="display-hero text-ivory">
+        {piece.name.replace('Lusitano ', '').split(' ').map((word) => (
+          <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">{word}</span></span>
+        ))}
+      </h1>
+      <p class="mt-6 max-w-lg text-ivory/70 lede" data-hero-fade>{piece.short}</p>
+      <div class="mt-8" data-hero-fade>
+        <a href="/contact" class="btn btn-light">Enquire about this piece</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCRIPTION -->
+  <section class="px-6 py-24 md:px-10 md:py-36">
+    <div class="mx-auto max-w-[1600px] grid gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="label text-ash mb-6" data-reveal>The piece</p>
+        <SplitLines as="h2" class="display-2" text={piece.description[0].split('.')[0] + '.'} />
+        <div class="mt-8 space-y-5 text-ash lede max-w-xl">
+          {piece.description.map((p) => <p data-reveal>{p}</p>)}
+        </div>
+        <div class="mt-10" data-reveal>
+          <a href="/contact" class="btn">Enquire about this piece</a>
+        </div>
+      </div>
+      <div class="lg:col-span-7 grid gap-4">
+        {piece.images.slice(1).map((img, i) => (
+          <Image src={img} alt={`${piece.name} — detail ${i + 1}`} ratio={i % 2 === 0 ? '4/3' : '16/10'} parallax={0.06 + i * 0.03} clip />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECS -->
+  <section class="border-y border-stone bg-parchment px-6 py-20 md:px-10 md:py-28">
+    <div class="mx-auto max-w-[1600px]">
+      <p class="label text-ash mb-12" data-reveal>Specification</p>
+      <div class="grid gap-x-12 gap-y-14 md:grid-cols-2 lg:grid-cols-4" data-reveal-group>
+        {piece.features && (
+          <div data-reveal-item>
+            <h3 class="label text-brass mb-5">Features</h3>
+            <ul class="space-y-2.5 text-sm text-ink/85">
+              {piece.features.map((f) => <li class="border-b border-stone pb-2.5">{f}</li>)}
+            </ul>
+          </div>
+        )}
+        <div data-reveal-item>
+          <h3 class="label text-brass mb-5">Materials</h3>
+          <ul class="space-y-2.5 text-sm text-ink/85">
+            {piece.materials.map((m) => <li class="border-b border-stone pb-2.5">{m}</li>)}
+          </ul>
+        </div>
+        <div data-reveal-item>
+          <h3 class="label text-brass mb-5">Dimensions</h3>
+          <ul class="space-y-2.5 text-sm">
+            {piece.dimensions.map((d) => (
+              <li class="flex justify-between border-b border-stone pb-2.5">
+                <span class="text-ash">{d.label}</span>
+                <span class="font-medium">{d.value}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div data-reveal-item>
+          <h3 class="label text-brass mb-5">Details</h3>
+          <ul class="space-y-2.5 text-sm text-ink/85">
+            <li class="border-b border-stone pb-2.5">Handcrafted in Portugal</li>
+            {piece.customisation?.map((c) => <li class="border-b border-stone pb-2.5">{c}</li>)}
+            {piece.technical?.map((t) => <li class="border-b border-stone pb-2.5">{t}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUGGESTION -->
+  {suggestionPiece && piece.suggestion && (
+    <section class="px-6 py-24 md:px-10 md:py-32">
+      <div class="mx-auto max-w-[1600px] grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="label text-ash mb-6" data-reveal>From the designer</p>
+          <blockquote class="serif-quote display-3 max-w-lg text-ink/90 leading-snug" data-reveal>
+            "{piece.suggestion.text}"
+          </blockquote>
+          <div class="mt-10" data-reveal>
+            <a href={`/lusitano/${suggestionPiece.slug}`} class="btn btn-solid">Discover the {suggestionPiece.name.replace('Lusitano ', '')}</a>
+          </div>
+        </div>
+        <a href={`/lusitano/${suggestionPiece.slug}`} class="group block" data-reveal>
+          <div class="img-frame aspect-[4/3]">
+            <img src={suggestionPiece.card} alt={suggestionPiece.name} loading="lazy" class="transition-transform duration-700 group-hover:scale-105" />
+          </div>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- BACK TO COLLECTION -->
+  <section class="border-t border-stone bg-night px-6 py-20 text-center text-ivory md:px-10">
+    <p class="label text-brass mb-6" data-reveal>Lusitano Collection</p>
+    <a href="/lusitano/story" class="display-2 hover:text-brass transition-colors duration-500" data-reveal>
+      Explore the full collection
+    </a>
+  </section>
+</Base>

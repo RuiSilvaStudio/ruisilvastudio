@@ -1,0 +1,27 @@
+# ── Secrets (never commit) ──────────────────────────────
+.env
+.env.*
+!.env.example
+*.env
+**/smtp.env
+**/api.env
+**/listmonk.env
+secrets/
+*.pem
+*.key
+
+# ── Dependencies & build output ─────────────────────────
+node_modules/
+dist/
+.astro/
+*.tsbuildinfo
+
+# ── OS / editor noise ───────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+.cache/
+
+# ── Local-only folders (do NOT go to GitHub) ────────────
+squarespace-content-scraping/
+other assets/

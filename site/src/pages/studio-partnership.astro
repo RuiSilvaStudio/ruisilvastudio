@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import SplitLines from '../components/SplitLines.astro';
+import Image from '../components/Image.astro';
+import { SITE } from '../lib/site';
+
+const BENEFITS = [
+  { title: 'Studio Connection', text: 'Direct dialogue with Rui Silva to explore finishes, adaptations, or bespoke commissions.' },
+  { title: 'Creative Previews', text: 'Early access to upcoming concepts, sketches, and studio studies.' },
+  { title: 'Trade', text: 'Preferential trade terms and project support, with partner projects featured through our journal and editorial imagery.' },
+  { title: 'Legacy Certification', text: 'Each commissioned piece accompanied by a signed provenance digital ID card, connecting the work to its story.' },
+  { title: 'Shared Storytelling', text: 'Each partnership is an exchange — of ideas and intentions — transforming the act of design into something personal and enduring.' },
+  { title: 'Cultural Exchange', text: 'Invitations to private design discussions, prototype viewings, and inspiration sessions.' },
+];
+---
+
+<Base title="Studio Partnership" description="A collaborative initiative connecting Rui Silva Studio with interior designers, architects, and creative professionals who share our vision for meaningful design." darkHeader>
+  <!-- HERO -->
+  <section class="relative flex min-h-[85svh] items-end overflow-hidden bg-night" data-hero>
+    <div class="absolute inset-0">
+      <img src="/images/portfolio/lusitano-dining-01.webp" alt="Studio partnership — forthcoming design" class="absolute inset-0 h-full w-full object-cover" data-hero-img fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/25 to-night/45"></div>
+    </div>
+    <div class="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-20 md:px-10">
+      <p class="label text-brass mb-6" data-hero-fade>The Studio Partnership</p>
+      <h1 class="display-hero text-ivory max-w-5xl">
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">Together, we bring</span></span>
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">artistry closer to</span></span>
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">those who live with it.</span></span>
+      </h1>
+      <div class="mt-10" data-hero-fade>
+        <a href={`mailto:${SITE.email}?subject=Studio%20Partnership`} class="btn btn-light">Contact us to join</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="px-6 py-24 md:px-10 md:py-36">
+    <div class="mx-auto max-w-[1600px] grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div>
+        <p class="label text-ash mb-4" data-reveal>The initiative</p>
+        <SplitLines as="h2" class="display-1" text={`Inspiring spaces
+emerge from
+collaboration.`} />
+        <p class="mt-8 max-w-lg text-ash lede" data-reveal>
+          A collaborative initiative connecting Rui Silva Studio with interior designers, architects, and creative professionals who share our vision for meaningful design — where craftsmanship meets creative purpose.
+        </p>
+        <p class="mt-6 max-w-lg text-ash" data-reveal>
+          The initiative offers direct atelier access, trade support, and early previews of new collections — building relationships where each partnership is an exchange of ideas and intentions.
+        </p>
+      </div>
+      <Image src="/images/portfolio/partnership.webp" alt="Studio partnership — materials and process" ratio="4/3" parallax={0.07} clip />
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="bg-night text-ivory px-6 py-24 md:px-10 md:py-36">
+    <div class="mx-auto max-w-[1600px]">
+      <div class="max-w-2xl mb-16">
+        <p class="label text-brass mb-4" data-reveal>What it offers</p>
+        <SplitLines as="h2" class="display-1" text={`The partnership,
+in six commitments.`} />
+      </div>
+      <div class="grid gap-px bg-ivory/10 md:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+        {BENEFITS.map((b, i) => (
+          <div class="group bg-night p-10 transition-colors duration-500 hover:bg-night-soft" data-reveal-item>
+            <span class="label text-brass">0{i + 1}</span>
+            <h3 class="mt-5 font-display text-xl">{b.title}</h3>
+            <p class="mt-3 text-sm text-ivory/60 leading-relaxed">{b.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 py-24 md:px-10 md:py-36 text-center">
+    <div class="mx-auto max-w-3xl">
+      <SplitLines as="h2" class="display-1" text={`Where craftsmanship
+meets creative purpose.`} />
+      <p class="mt-8 text-ash lede" data-reveal>
+        Meetings are held in English or Portuguese. Schedule a 30-minute conversation, or write to us directly.
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4" data-reveal>
+        <a href={`mailto:${SITE.email}?subject=Studio%20Partnership`} class="btn btn-solid">Contact us to join</a>
+        <a href="/contact" class="btn">Visit the contact page</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,129 @@
+---
+import Base from '../layouts/Base.astro';
+import SplitLines from '../components/SplitLines.astro';
+import { SITE } from '../lib/site';
+
+const contactLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Rui Silva Studio',
+  url: `${SITE.url}/contact`,
+};
+---
+
+<Base title="Contact" description="Reach out to Rui Silva Studio — commissions, customisation, studio visits in Guimarães, Portugal." jsonLd={contactLd}>
+  <section class="px-6 pt-40 pb-24 md:px-10 md:pt-52 md:pb-36">
+    <div class="mx-auto max-w-[1600px]">
+      <p class="label text-ash mb-6" data-reveal>Contact</p>
+      <SplitLines as="h1" class="display-hero max-w-5xl" text={`Reach out
+today.`} />
+      <p class="mt-8 max-w-xl text-ash lede" data-reveal>
+        Every order and inquiry is handled personally. Tell us about your project, your space, or the piece you're considering — we'll guide you through quotes, lead times and customisation.
+      </p>
+
+      <div class="mt-20 grid gap-16 lg:grid-cols-12">
+        <!-- Form -->
+        <div class="lg:col-span-7" data-reveal>
+          <form id="contact-form" class="grid gap-5 sm:grid-cols-2" novalidate data-endpoint="https://forms.ruisilvastudio.com/api/contact">
+            <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="sm:col-span-1 field-group">
+              <label for="f-name" class="label mb-2 block text-ash">Name</label>
+              <input id="f-name" name="name" type="text" required class="field" placeholder="Your name" autocomplete="name" />
+              <p class="field-error" data-error-for="name"></p>
+            </div>
+            <div class="sm:col-span-1 field-group">
+              <label for="f-email" class="label mb-2 block text-ash">Email</label>
+              <input id="f-email" name="email" type="email" required class="field" placeholder="you@example.com" autocomplete="email" />
+              <p class="field-error" data-error-for="email"></p>
+            </div>
+            <div class="sm:col-span-2 field-group">
+              <label for="f-subject" class="label mb-2 block text-ash">Subject</label>
+              <select id="f-subject" name="subject" class="field">
+                <option>Enquiry about a piece</option>
+                <option>Bespoke commission</option>
+                <option>Studio visit</option>
+                <option>Studio Partnership</option>
+                <option>Press / other</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2 field-group">
+              <label for="f-message" class="label mb-2 block text-ash">Message</label>
+              <textarea id="f-message" name="message" rows="6" required minlength="10" class="field resize-y" placeholder="Tell us about your project or the piece you have in mind…"></textarea>
+              <p class="field-error" data-error-for="message"></p>
+            </div>
+
+            <div class="sm:col-span-2 flex items-center gap-5 flex-wrap">
+              <button type="submit" class="btn btn-solid" data-submit>
+                <span class="btn-label">Send enquiry</span>
+                <span class="btn-spinner" aria-hidden="true"></span>
+              </button>
+              <p class="form-status text-sm" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+
+          <!-- Success panel -->
+          <div class="form-success hidden" tabindex="-1">
+            <img src="/images/brand/lusitano-horse-black.png" alt="" class="w-14 mb-6" />
+            <h2 class="display-3">Thank you — message received.</h2>
+            <p class="mt-4 max-w-md text-ash lede">
+              I'll read it personally and reply within a couple of days. A confirmation copy is on its way to your inbox.
+            </p>
+            <a href="/lusitano/story" class="btn mt-8">Explore the collection</a>
+          </div>
+        </div>
+
+        <!-- Direct info -->
+        <aside class="lg:col-span-5 space-y-10" data-reveal-group>
+          <div data-reveal-item>
+            <h2 class="label text-brass mb-4">Direct</h2>
+            <p class="font-display text-xl"><a href={`mailto:${SITE.email}`} class="link-sweep">{SITE.email}</a></p>
+            <p class="font-display text-xl mt-2"><a href={`tel:${SITE.phoneHref}`} class="link-sweep">{SITE.phone}</a></p>
+          </div>
+          <div data-reveal-item>
+            <h2 class="label text-brass mb-4">Visit the studio</h2>
+            <address class="not-italic text-ash leading-relaxed">
+              {SITE.address.street}<br />
+              {SITE.address.locality}<br />
+              {SITE.address.postal}<br />
+              {SITE.address.country}
+            </address>
+            <p class="mt-3 text-sm text-ash/80">Visits by appointment — the studio isn't a public showroom, but we're happy to host.</p>
+          </div>
+          <div data-reveal-item>
+            <h2 class="label text-brass mb-4">Collaborate</h2>
+            <p class="text-sm text-ash leading-relaxed">
+              Rui Silva Studio works closely with interior designers, architects, and creative professionals through the <a href="/studio-partnership" class="link-sweep text-ink">Studio Partnership</a> — direct atelier access, trade support, and early previews of new collections.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .field-error { display: none; color: #B23B2E; font-size: 12.5px; margin-top: 6px; }
+  .field-group.has-error .field { border-color: #B23B2E; }
+  .field-group.has-error .field-error { display: block; }
+
+  .btn-spinner {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1.5px solid rgba(252,251,248,0.35); border-top-color: var(--color-ivory);
+    animation: spin 0.7s linear infinite;
+    display: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  form.is-sending .btn-spinner { display: inline-block; }
+  form.is-sending [data-submit] { opacity: 0.7; pointer-events: none; }
+  .form-status:empty { display: none; }
+  .form-status.is-error { color: #B23B2E; }
+
+  .form-success { animation: fade-up 0.8s var(--ease-out-expo) both; }
+</style>
+
+<script>
+  import { initContactForm } from '../lib/forms';
+  initContactForm('#contact-form');
+</script>

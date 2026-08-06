@@ -1,0 +1,31 @@
+[app]
+address = "0.0.0.0:9000"
+# Public URL — used in opt-in/unsubscribe links inside emails.
+root_url = "https://newsletter.ruisilvastudio.com"
+logo_url = "https://www.ruisilvastudio.com/images/brand/logo-horizontal.png"
+favicon_url = "https://www.ruisilvastudio.com/images/brand/logo-mark.png"
+# NOTE: admin credentials live in the Listmonk DB (Settings → Users), not here.
+
+[db]
+host = "listmonk-db"
+port = 5432
+user = "listmonk"
+password = "REPLACE_DB_PASS"
+database = "listmonk"
+ssl_mode = "disable"
+max_open = 10
+max_idle = 5
+
+[[smtp]]
+enabled = true
+host = "smtp-relay.brevo.com"
+port = 465
+auth_protocol = "login"
+username = "b4ab41001@smtp-brevo.com"
+password = "REPLACE_SMTP_PASS"
+# implicit TLS on 465 (values: "tls" | "starttls" | "none")
+tls = "tls"
+idle_timeout = "15s"
+wait_timeout = "10s"
+from_email = "Rui Silva Studio <rui.silva@ruisilvastudio.com>"
+max_msg_retries = 2

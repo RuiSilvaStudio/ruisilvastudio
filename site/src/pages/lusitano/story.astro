@@ -1,0 +1,152 @@
+---
+import Base from '../../layouts/Base.astro';
+import SplitLines from '../../components/SplitLines.astro';
+import Image from '../../components/Image.astro';
+import { PIECES, MATERIALS, SITE } from '../../lib/site';
+
+const collectionLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'The Lusitano Collection',
+  description: 'Strength refined. Practical elegance. Collectible furniture in oak, steel, brass and porcelain, handcrafted in Portugal.',
+  url: `${SITE.url}/lusitano/story`,
+};
+---
+
+<Base title="The Lusitano Collection" description="Strength refined. Practical elegance. The story of the Lusitano Collection — honest materials, enduring character, handcrafted in Portugal." darkHeader jsonLd={collectionLd}>
+  <!-- progress -->
+  <div class="fixed top-0 left-0 right-0 z-[990] h-[2px] bg-brass origin-left scale-x-0" data-progress></div>
+
+  <!-- HERO -->
+  <section class="relative flex min-h-[92svh] items-end overflow-hidden bg-night" data-hero>
+    <div class="absolute inset-0">
+      <img src="/images/products/coffee-table/coffee-table-render.webp" alt="Lusitano collection render — coffee table in oak and steel" class="absolute inset-0 h-full w-full object-cover" data-hero-img fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/20 to-night/40"></div>
+    </div>
+    <div class="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-20 md:px-10">
+      <div class="flex items-center gap-5 mb-8" data-hero-fade>
+        <img src="/images/brand/lusitano-horse-white.png" alt="" class="w-12" />
+        <p class="label text-brass">Collection Nº 01</p>
+      </div>
+      <h1 class="display-hero text-ivory">
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">Lusitano</span></span>
+      </h1>
+      <p class="mt-6 max-w-xl text-ivory/70 lede" data-hero-fade>
+        Strength refined. Practical elegance. Inspired by Portugal's noble horse — known not for excess, but for strength, agility, and practical beauty.
+      </p>
+    </div>
+  </section>
+
+  <!-- BORN IN A WORKSHOP -->
+  <section class="px-6 py-24 md:px-10 md:py-36">
+    <div class="mx-auto max-w-[1600px]">
+      <div class="grid gap-14 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <p class="label text-ash mb-4" data-reveal>Origin</p>
+          <SplitLines as="h2" class="display-2" text={`Born in a workshop,
+inspired by tradition.`} />
+        </div>
+        <div class="lg:col-span-8 grid gap-10 md:grid-cols-2">
+          <p class="text-ash lede" data-reveal>
+            After moving into a new home, I built a small wooden shed to pursue woodworking. With time on my hands and a few tools, I began creating furniture for my own house. The first piece had to be more than functional — something intentionally different, yet naturally integrated into the living space.
+          </p>
+          <p class="text-ash lede" data-reveal>
+            As I worked through shapes and materials, the inspiration became clear. The design seemed to speak, guiding me toward the Lusitano — Portugal's noble horse. That connection gave the piece its soul, and set the foundation for an entire collection.
+          </p>
+        </div>
+      </div>
+      <div class="mt-16 grid gap-4 md:grid-cols-2">
+        <Image src="/images/workshop/workshop-exterior.webp" alt="The wooden workshop built behind the house" ratio="16/10" clip />
+        <Image src="/images/workshop/oak-barrels.webp" alt="Oak barrels — oak has aged wine for over a thousand years" ratio="16/10" clip />
+      </div>
+      <p class="mt-4 text-xs text-ash/70" data-reveal>Oak barrels have been used for wine aging for over a thousand years — the same material, the same patience.</p>
+    </div>
+  </section>
+
+  <!-- MATERIALS — sticky horizontal -->
+  <section class="bg-night text-ivory" data-hscroll>
+    <div class="hscroll-panel flex h-[100svh] flex-col justify-center overflow-hidden">
+      <div class="mx-auto w-full max-w-[1600px] px-6 md:px-10 mb-10">
+        <p class="label text-brass mb-4">Materiality</p>
+        <h2 class="display-2">Honest materials, enduring character.</h2>
+      </div>
+      <div class="hscroll-track pl-6 md:pl-10">
+        {MATERIALS.map((m) => (
+          <figure class="w-[74vw] sm:w-[44vw] md:w-[30vw] shrink-0">
+            <div class="img-frame aspect-[4/5]">
+              <img src={m.img} alt={`${m.name} — ${m.role}`} loading="lazy" />
+            </div>
+            <figcaption class="mt-5">
+              <span class="font-display text-2xl">{m.name}</span>
+              <span class="block label text-brass mt-2">{m.role}</span>
+              <span class="block text-sm text-ivory/60 mt-2">{m.note}</span>
+            </figcaption>
+          </figure>
+        ))}
+        <div class="flex w-[50vw] md:w-[26vw] shrink-0 items-center">
+          <p class="serif-quote text-2xl text-ivory/70 leading-snug pr-10">
+            "That connection gave the piece its soul."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDENTITY -->
+  <section class="relative px-6 py-28 md:px-10 md:py-44 overflow-hidden">
+    <div class="mx-auto max-w-[1600px] text-center">
+      <img src="/images/brand/lusitano-horse-white.png" alt="" class="mx-auto w-20 mb-12" data-reveal />
+      <SplitLines
+        as="h2"
+        class="display-1 mx-auto max-w-4xl"
+        text={`Just as the Lusitano has stood
+for centuries as a symbol of
+resilience and discipline.`}
+      />
+      <p class="mx-auto mt-10 max-w-2xl text-ash lede" data-reveal>
+        The collection is built on honest materials combined with precise proportions and purposeful elegance. What began as a personal project has grown into a collection with its own identity — and into Rui Silva Studio, where each collection is envisioned as a world of its own.
+      </p>
+    </div>
+  </section>
+
+  <!-- MEET THE COLLECTION -->
+  <section class="border-t border-stone bg-parchment px-6 py-24 md:px-10 md:py-32">
+    <div class="mx-auto max-w-[1600px]">
+      <div class="mb-14 flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="label text-ash mb-4" data-reveal>The pieces</p>
+          <h2 class="display-2" data-reveal>Meet the collection</h2>
+        </div>
+        <p class="text-sm text-ash max-w-xs" data-reveal>Each piece is made to order in the studio workshop, with finishes tailored to your home.</p>
+      </div>
+      <div class="grid gap-x-4 gap-y-16 sm:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+        {PIECES.map((piece, i) => (
+          <a href={`/lusitano/${piece.slug}`} class:list={['group block', { 'lg:mt-16': i % 3 === 1, 'lg:mt-32': i % 3 === 2 }]} data-reveal-item>
+            <div class="img-frame aspect-[3/4]">
+              <img src={piece.card} alt={piece.name} loading="lazy" class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]" />
+            </div>
+            <div class="mt-5">
+              <span class="label text-brass">0{i + 1}</span>
+              <h3 class="mt-2 font-display text-2xl group-hover:text-brass transition-colors duration-300">{piece.name}</h3>
+              <p class="mt-1 text-sm text-ash">{piece.short}</p>
+              <span class="mt-4 inline-block label text-ink group-hover:text-brass transition-colors">Discover →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM HELD — dark banner -->
+  <section class="relative flex min-h-[70svh] items-center justify-center overflow-hidden bg-night">
+    <div class="absolute inset-0" data-parallax="0.12">
+      <img src="/images/hero/credenza-hero.webp" alt="" class="opacity-60" loading="lazy" />
+    </div>
+    <div class="absolute inset-0 bg-night/50"></div>
+    <div class="relative z-10 text-center px-6" data-reveal>
+      <h2 class="display-1 text-ivory">Form held in oak and steel.</h2>
+      <p class="label mt-6 text-brass">Durability — Craftsmanship — Timelessness</p>
+      <a href="/lusitano/credenza" class="btn btn-light mt-10">Discover the Credenza</a>
+    </div>
+  </section>
+</Base>

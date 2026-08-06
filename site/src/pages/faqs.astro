@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import SplitLines from '../components/SplitLines.astro';
+import { FAQS, SITE } from '../lib/site';
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQS.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base title="FAQs" description="Questions about Rui Silva Studio — collectible furniture, craft, orders, customisation, shipping and lead times." jsonLd={faqLd}>
+  <section class="px-6 pt-40 pb-24 md:px-10 md:pt-52 md:pb-36">
+    <div class="mx-auto max-w-[1600px]">
+      <div class="max-w-3xl">
+        <p class="label text-ash mb-6" data-reveal>FAQs</p>
+        <SplitLines as="h1" class="display-hero" text={`Questions,
+answered.`} />
+        <p class="mt-8 text-ash lede" data-reveal>Collectible furniture, craft & orders — everything about how the studio works.</p>
+      </div>
+
+      <div class="mt-20 max-w-4xl divide-y divide-stone border-y border-stone" data-reveal-group>
+        {FAQS.map((f, i) => (
+          <details class="group py-8 [&_summary]:list-none" data-reveal-item>
+            <summary class="flex cursor-pointer items-baseline justify-between gap-6">
+              <span class="flex items-baseline gap-5">
+                <span class="label text-brass shrink-0">0{i + 1}</span>
+                <span class="font-display text-xl md:text-2xl group-hover:text-brass transition-colors">{f.q}</span>
+              </span>
+              <span class="font-display text-2xl text-ash transition-transform duration-300 group-open:rotate-45 shrink-0">+</span>
+            </summary>
+            <p class="mt-5 max-w-2xl pl-0 md:pl-14 text-ash leading-relaxed">{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <div class="mt-16 max-w-4xl" data-reveal>
+        <p class="text-ash">Something else on your mind?</p>
+        <a href={`mailto:${SITE.email}`} class="link-sweep font-display text-2xl mt-2 inline-block">{SITE.email}</a>
+      </div>
+    </div>
+  </section>
+</Base>

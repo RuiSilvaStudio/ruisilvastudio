@@ -1,0 +1,210 @@
+---
+import { NAV, SITE } from '../lib/site';
+
+interface Props { dark?: boolean }
+const { dark = false } = Astro.props;
+const path = Astro.url.pathname;
+const isActive = (href?: string) =>
+  !!href && (path === href || (href !== '/' && path.startsWith(href.split('#')[0])));
+---
+
+<header class:list={['site-header', { 'on-dark': dark }]} id="site-header" style="z-index: 980;">
+  <div class="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
+    <a href="/" class="relative z-[990] flex items-center" aria-label={SITE.name}>
+      <!-- Monogram only — small screens -->
+      <img src="/images/brand/logo-mark.png" alt="" width="57" height="55" class="h-9 w-auto sm:hidden header-logo-mark transition-[filter] duration-500" />
+      <!-- Full horizontal lockup (monogram + wordmark) — sm and up -->
+      <img src="/images/brand/logo-horizontal.png" alt={SITE.name} width="1155" height="348" class="h-12 w-auto hidden sm:block header-logo-full transition-[filter] duration-500" />
+    </a>
+
+    <nav class="hidden items-center gap-8 lg:flex" aria-label="Primary">
+      {NAV.map((item) =>
+        item.dropdown ? (
+          <div class="nav-dd" data-dropdown>
+            <button
+              class:list={['nav-link nav-dd-trigger', { 'is-active': item.children?.some((c) => isActive(c.href)) }]}
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {item.label}
+              <svg class="nav-dd-caret" width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true">
+                <path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.2" />
+              </svg>
+            </button>
+
+            <!-- Editorial dropdown panel -->
+            <div class="nav-dd-panel" role="menu" aria-label={item.label}>
+              <div class="nav-dd-head">
+                <span class="label text-brass">The Lusitano Pieces</span>
+                <a href="/lusitano/story" class="label link-sweep text-ivory/60 hover:text-brass">Collection story →</a>
+              </div>
+              <div class="nav-dd-grid">
+                {item.children?.map((child, i) => (
+                  <a href={child.href} class="nav-dd-card group" role="menuitem">
+                    <div class="nav-dd-thumb img-frame">
+                      <img src={child.img} alt={child.label} loading="lazy" decoding="async" />
+                    </div>
+                    <div class="nav-dd-meta">
+                      <span class="nav-dd-index">0{i + 1}</span>
+                      <div>
+                        <span class="nav-dd-name">{child.label}</span>
+                        <span class="nav-dd-desc">{child.desc}</span>
+                      </div>
+                      <span class="nav-dd-arrow" aria-hidden="true">→</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <a href={item.href} class:list={['nav-link', { 'is-active': isActive(item.href) }]}>
+            {item.label}
+          </a>
+        )
+      )}
+    </nav>
+
+    <div class="flex items-center gap-5">
+      <a href="/contact" class="btn btn-header hidden !py-2.5 !px-5 lg:inline-flex">Enquire</a>
+      <button id="menu-toggle" class="relative z-[990] flex h-11 w-11 items-center justify-center lg:hidden" aria-label="Open menu" aria-expanded="false">
+        <span class="menu-burger"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Fullscreen menu overlay -->
+<div id="menu-overlay" aria-hidden="true">
+  <div class="flex h-full flex-col justify-between overflow-y-auto px-6 pb-10 pt-28 md:px-12">
+    <nav class="flex flex-col gap-2" aria-label="Menu">
+      {NAV.map((item, i) => (
+        <div class="menu-item">
+          {item.dropdown ? (
+            <div>
+              <span class="display-2 font-display text-ivory/90 block" data-menu-link>
+                <span class="mr-4 text-sm text-brass align-super">0{i + 1}</span>{item.label}
+              </span>
+              <div class="mt-4 mb-3 grid grid-cols-2 gap-4 pl-10">
+                {item.children?.map((child) => (
+                  <a href={child.href} class="group flex items-center gap-3" data-menu-link>
+                    <span class="block h-12 w-12 shrink-0 overflow-hidden">
+                      <img src={child.img} alt="" loading="lazy" class="h-full w-full object-cover" />
+                    </span>
+                    <span class="text-sm text-ivory/70 group-hover:text-brass transition-colors leading-tight">{child.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a href={item.href} class="display-2 font-display hover:text-brass transition-colors" data-menu-link>
+              <span class="mr-4 text-sm text-brass align-super">0{i + 1}</span>{item.label}
+            </a>
+          )}
+        </div>
+      ))}
+    </nav>
+    <div class="menu-item flex flex-col gap-1 text-sm text-ivory/60 pt-8">
+      <a href={`mailto:${SITE.email}`} data-menu-link>{SITE.email}</a>
+      <span>{SITE.address.locality}, {SITE.address.country}</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ── burger ── */
+  .menu-burger, .menu-burger::before, .menu-burger::after {
+    display: block; width: 26px; height: 1.5px; background: currentColor;
+    position: relative; transition: transform 0.4s var(--ease-out-expo), opacity 0.3s;
+  }
+  .menu-burger::before, .menu-burger::after { content: ""; position: absolute; left: 0; }
+  .menu-burger::before { top: -8px; }
+  .menu-burger::after { top: 8px; }
+  #menu-toggle[aria-expanded="true"] .menu-burger { background: transparent; }
+  #menu-toggle[aria-expanded="true"] .menu-burger::before { transform: translateY(8px) rotate(45deg); background: var(--color-ivory); }
+  #menu-toggle[aria-expanded="true"] .menu-burger::after { transform: translateY(-8px) rotate(-45deg); background: var(--color-ivory); }
+
+  /* ── desktop editorial dropdown ── */
+  .nav-dd { position: relative; }
+  .nav-dd-trigger {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    background: none; border: 0; cursor: pointer;
+    font-family: inherit; font-size: 12px; font-weight: 500; color: inherit;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .nav-dd-caret { transition: transform 0.4s var(--ease-out-expo); opacity: 0.6; }
+  .nav-dd[data-open] .nav-dd-caret { transform: rotate(180deg); }
+
+  .nav-dd-panel {
+    position: fixed; top: 5.2rem; left: 50%;
+    width: min(680px, 92vw);
+    transform: translateX(-50%) translateY(12px);
+    background: var(--color-night); color: var(--color-ivory);
+    border: 1px solid rgba(252, 251, 248, 0.08);
+    padding: 1.5rem;
+    opacity: 0; visibility: hidden;
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.55);
+    transition: opacity 0.35s var(--ease-out-expo), transform 0.35s var(--ease-out-expo), visibility 0.35s;
+    pointer-events: none;
+  }
+  /* invisible bridge so the gap doesn't kill hover */
+  .nav-dd-panel::before {
+    content: ""; position: absolute; top: -1.4rem; left: 0; right: 0; height: 1.4rem;
+  }
+  .nav-dd[data-open] .nav-dd-panel {
+    opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav-dd-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 1rem; margin-bottom: 1.1rem;
+    border-bottom: 1px solid rgba(252, 251, 248, 0.1);
+  }
+
+  .nav-dd-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)); gap: 1.1rem;
+  }
+  .nav-dd-card { display: flex; flex-direction: column; gap: 0.7rem; }
+  .nav-dd-thumb { aspect-ratio: 3/4; width: 100%; }
+  .nav-dd-thumb img { transition: transform 0.6s var(--ease-out-expo); }
+  .nav-dd-card:hover .nav-dd-thumb img { transform: scale(1.06); }
+  .nav-dd-meta { display: flex; align-items: flex-start; gap: 0.5rem; }
+  .nav-dd-index { font-size: 10px; letter-spacing: 0.14em; color: var(--color-brass); margin-top: 1px; }
+  .nav-dd-name { display: block; font-family: var(--font-display); font-size: 13px; font-weight: 500; line-height: 1.2; }
+  .nav-dd-desc { display: block; font-size: 11px; color: rgba(252, 251, 248, 0.5); line-height: 1.3; margin-top: 2px; }
+  .nav-dd-arrow { margin-left: auto; font-size: 13px; color: var(--color-brass); opacity: 0; transform: translateX(-4px); transition: 0.35s var(--ease-out-expo); }
+  .nav-dd-card:hover .nav-dd-arrow { opacity: 1; transform: translateX(0); }
+  .nav-dd-card:hover .nav-dd-name { color: var(--color-brass); }
+</style>
+
+<script>
+  // Desktop dropdown: hover + click + Escape, works with keyboard focus too
+  document.querySelectorAll('[data-dropdown]').forEach((dd) => {
+    const trigger = dd.querySelector('.nav-dd-trigger');
+    let open = false;
+    let closeTimer: ReturnType<typeof setTimeout>;
+
+    const setOpen = (v: boolean) => {
+      open = v;
+      dd.toggleAttribute('data-open', v);
+      trigger?.setAttribute('aria-expanded', String(v));
+    };
+    const scheduleClose = () => {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => setOpen(false), 220);
+    };
+    const cancelClose = () => clearTimeout(closeTimer);
+
+    dd.addEventListener('mouseenter', () => { cancelClose(); setOpen(true); });
+    dd.addEventListener('mouseleave', scheduleClose);
+    trigger?.addEventListener('click', () => setOpen(!open));
+    dd.addEventListener('focusin', () => { cancelClose(); setOpen(true); });
+    dd.addEventListener('focusout', (e) => {
+      if (!dd.contains((e as FocusEvent).relatedTarget as Node)) scheduleClose();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && open) { setOpen(false); (trigger as HTMLElement)?.focus(); }
+    });
+  });
+</script>

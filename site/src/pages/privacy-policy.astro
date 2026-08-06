@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
+
+const SECTIONS = [
+  {
+    title: '1. Introduction',
+    body: [`Hello, I'm Rui Silva, an independent furniture designer and maker based in Portugal. I respect your privacy and am committed to protecting your personal data. This Privacy & Cookie Policy explains how I collect, use, disclose, and store personal data when you visit www.ruisilvastudio.com (the "Site"). It also describes your rights under the General Data Protection Regulation (GDPR) and related privacy laws.`],
+  },
+  {
+    title: '2. What personal data I collect',
+    list: [
+      'Contact details — your name, email address, chosen subject and message when you contact me via the website\'s enquiry form or by email.',
+      'Booking details — if you book a studio visit or video call, your name, contact details, and chosen time.',
+      'Newsletter details — your email address if you subscribe to the newsletter.',
+      'Technical and usage data — IP address, browser type, device information and browsing behaviour. This Site is a static website and does not itself set tracking cookies; limited technical data may be processed by the hosting provider and by privacy-respecting, cookieless analytics if enabled.',
+    ],
+    body: ['I do not knowingly collect sensitive personal data or information about children. If you believe I have collected data from a minor, please contact me immediately.'],
+  },
+  {
+    title: '3. Legal basis and purposes',
+    body: ['I process personal data only when I have a lawful basis under Article 6 GDPR:'],
+    list: [
+      'Contract / legitimate interests — to respond to your enquiries, provide quotes, arrange bookings and deliveries, and provide information about my work.',
+      'Consent — to send newsletters or marketing communications. Consent is obtained through an affirmative action (no pre-ticked boxes) and can be withdrawn at any time via the unsubscribe link or by contacting me.',
+      'Legal obligations — to comply with applicable laws (e.g. tax and invoicing).',
+      'Legitimate interests — to improve the Site\'s performance and security.',
+    ],
+  },
+  {
+    title: '4. How I collect data',
+    body: ['Data is collected directly from you when you fill in the enquiry form, book a visit, or subscribe to the newsletter, and automatically through standard server logs when you browse the Site. I do not use third-party advertising trackers.'],
+  },
+  {
+    title: '5. How I use data',
+    list: [
+      'Respond to messages and enquiries, and prepare quotes.',
+      'Manage bookings for studio visits and video calls.',
+      'Send you the newsletter and announcements when you have opted in.',
+      'Improve the Site and my services.',
+      'Comply with legal obligations.',
+    ],
+    body: ['Your data will not be used for purposes inconsistent with this policy without further notice.'],
+  },
+  {
+    title: '6. Data sharing',
+    body: ['I do not sell or rent your personal data. I may share information with trusted service providers solely to operate the Site and my communications — for example form-delivery, email, newsletter and scheduling providers (such as FormSubmit, an email service, or a booking tool). These providers process data only on my instructions and are bound by confidentiality and data-protection obligations. Where a provider is outside the EU, transfers rely on adequacy decisions or standard contractual clauses. I may disclose data if required by law or to protect my rights.'],
+  },
+  {
+    title: '7. Cookies and consent management',
+    body: ['This Site is designed to work without non-essential cookies.'],
+    list: [
+      'Strictly necessary storage — the Site may use your browser\'s local storage to remember interface preferences (for example, menu or motion settings). This stays on your device and is not transmitted to me.',
+      'Analytics — if enabled, I use privacy-respecting, cookieless analytics (no cross-site tracking, no advertising profiles).',
+      'No advertising or social-media cookies are used.',
+    ],
+  },
+  {
+    title: '8. Data retention',
+    body: ['I keep enquiry and booking messages for as long as necessary to respond and maintain our relationship, and to meet legal obligations. Newsletter subscription data is retained until you unsubscribe. Server logs are rotated and deleted by the hosting provider on their standard schedule.'],
+  },
+  {
+    title: '9. Your rights',
+    body: ['Under the GDPR you have the right to access, correct, delete, or restrict your personal data, to object to processing, to request data portability, and to withdraw consent at any time. To exercise any of these rights, contact me using the details below. You also have the right to lodge a complaint with the Portuguese supervisory authority, the CNPD (Comissão Nacional de Proteção de Dados).'],
+  },
+  {
+    title: '10. Security measures',
+    body: ['I employ appropriate technical and organisational measures — such as HTTPS, secure hosting, and access controls — to protect your data from unauthorized access or loss. Although no method is 100% secure, I strive to safeguard the information you entrust to me.'],
+  },
+  {
+    title: '11. Contact information',
+    body: [`For any privacy enquiries or to exercise your data-protection rights: Rui Silva, ${SITE.address.street}, ${SITE.address.locality}, ${SITE.address.postal}, ${SITE.address.country} — ${SITE.phone} — ${SITE.email}.`],
+  },
+  {
+    title: '12. Updates to this policy',
+    body: ['I may update this Privacy & Cookie Policy from time to time. Material changes will be posted on this page with a revised "Last Updated" date.'],
+  },
+];
+---
+
+<Base title="Privacy & Cookie Policy" description="How Rui Silva Studio collects, uses and protects your personal data — GDPR-compliant privacy and cookie policy.">
+  <section class="px-6 pt-40 pb-24 md:px-10 md:pt-52">
+    <div class="mx-auto max-w-3xl">
+      <p class="label text-ash mb-6" data-reveal>Legal</p>
+      <h1 class="display-1" data-reveal>Privacy & Cookie Policy</h1>
+      <p class="mt-4 text-sm text-ash" data-reveal>Last updated: 08/2026</p>
+
+      <div class="mt-16 space-y-14">
+        {SECTIONS.map((s) => (
+          <section data-reveal>
+            <h2 class="font-display text-2xl mb-4">{s.title}</h2>
+            {s.body?.map((p) => <p class="text-ash leading-relaxed mb-4">{p}</p>)}
+            {s.list && (
+              <ul class="space-y-2.5 text-ash leading-relaxed">
+                {s.list.map((li) => <li class="flex gap-3"><span class="text-brass mt-1.5 shrink-0 text-[8px]">●</span><span>{li}</span></li>)}
+              </ul>
+            )}
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

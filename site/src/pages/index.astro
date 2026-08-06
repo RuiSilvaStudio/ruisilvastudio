@@ -1,0 +1,241 @@
+---
+import Base from '../layouts/Base.astro';
+import SplitLines from '../components/SplitLines.astro';
+import Image from '../components/Image.astro';
+import { PIECES, MATERIALS, SITE } from '../lib/site';
+
+const homeLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+};
+---
+
+<Base title={SITE.name} description={SITE.description} darkHeader jsonLd={homeLd}>
+  <!-- ═══ HERO ═══ -->
+  <section class="relative h-[100svh] min-h-[640px] overflow-hidden bg-night" data-hero>
+    <div class="absolute inset-0">
+      <img
+        src="/images/hero/credenza-hero.webp"
+        alt="Lusitano Credenza in solid oak and black steel, photographed in a warm living space"
+        class="absolute inset-0 h-full w-full object-cover"
+        data-hero-img
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-night/85 via-night/25 to-night/35"></div>
+      <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-night/70 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 flex h-full flex-col justify-end px-6 pb-24 md:px-10 md:pb-16">
+      <div class="max-w-[1600px] mx-auto w-full">
+        <p class="label text-brass mb-6" data-hero-fade>Lusitano Collection — Edition 01</p>
+        <h1 class="display-hero text-ivory max-w-5xl">
+          <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">Furniture as</span></span>
+          <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">cultural</span></span>
+          <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">infrastructure.</span></span>
+        </h1>
+        <div class="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <p class="max-w-md text-ivory/70 lede" data-hero-fade>
+            Collectible pieces handcrafted in Portugal — oak, steel, brass and porcelain, made to be lived with, admired, and kept.
+          </p>
+          <div class="flex items-center gap-4" data-hero-fade>
+            <a href="/lusitano/story" class="btn btn-light">Discover the Collection</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- scroll cue -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:block" data-hero-fade>
+      <div class="h-14 w-px bg-gradient-to-b from-transparent via-ivory/50 to-ivory/10"></div>
+    </div>
+  </section>
+
+  <!-- ═══ MANIFESTO STRIP ═══ -->
+  <section class="px-6 py-28 md:px-10 md:py-40">
+    <div class="mx-auto max-w-[1600px] grid gap-10 md:grid-cols-12">
+      <div class="md:col-span-3" data-reveal>
+        <p class="label text-ash">The Studio — Est. 2024</p>
+      </div>
+      <div class="md:col-span-9">
+        <SplitLines
+          as="h2"
+          class="display-1 max-w-5xl"
+          text={`We make fewer. We make better.
+We make personal.`}
+        />
+        <p class="mt-10 max-w-2xl text-ash lede" data-reveal>
+          Rui Silva Studio is a contemporary design practice creating one-of-a-kind collectible furniture. Founded after more than 15 years in senior leadership within the luxury fashion industry, the studio blends craftsmanship, cultural storytelling, and luxury-level detail.
+        </p>
+        <div class="mt-10" data-reveal>
+          <a href="/about" class="link-sweep label text-ink">Read the studio story →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COLLECTION INTRO — dark panel ═══ -->
+  <section class="relative bg-night text-ivory overflow-hidden">
+    <div class="mx-auto max-w-[1600px] px-6 py-24 md:px-10 md:py-36 grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div>
+        <img src="/images/brand/lusitano-horse-white.png" alt="Lusitano horse mark" class="w-16 mb-10" data-reveal />
+        <SplitLines
+          as="h2"
+          class="display-1"
+          text={`Strength refined.
+Practical elegance.`}
+        />
+        <p class="mt-8 max-w-lg text-ivory/65 lede" data-reveal>
+          The Lusitano Collection was born from a personal project that grew into a vision — furniture designed with discipline, strength, and elegance. Inspired by Portugal's noble horse, each piece balances practicality with refined presence.
+        </p>
+        <div class="mt-10" data-reveal>
+          <a href="/lusitano/story" class="btn btn-light">The Collection Story</a>
+        </div>
+      </div>
+      <div class="relative">
+        <Image src="/images/products/coffee-table/coffee-table-render.webp" alt="Lusitano coffee table render in oak and steel" ratio="3/4" parallax={0.08} clip class="max-h-[80vh]" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PIECES — horizontal scroll gallery ═══ -->
+  <section id="pieces" class="hscroll-wrap bg-ivory" data-hscroll>
+    <div class="hscroll-panel flex h-[100svh] flex-col justify-center overflow-hidden py-10">
+      <div class="mx-auto w-full max-w-[1600px] px-6 md:px-10 mb-10 flex items-end justify-between">
+        <div>
+          <p class="label text-ash mb-4">Lusitano Collection</p>
+          <h2 class="display-2">Meet the pieces</h2>
+        </div>
+        <p class="hidden md:block text-sm text-ash">Scroll to explore →</p>
+      </div>
+      <div class="hscroll-track pl-6 md:pl-10">
+        {PIECES.map((piece, i) => (
+          <a href={`/lusitano/${piece.slug}`} class="group relative block w-[78vw] sm:w-[52vw] md:w-[38vw] lg:w-[30vw] shrink-0" data-piece-card>
+            <div class="img-frame aspect-[3/4]">
+              <img src={piece.card} alt={piece.name} loading="lazy" decoding="async" class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]" />
+            </div>
+            <div class="mt-5 flex items-baseline justify-between gap-4">
+              <div>
+                <span class="label text-brass">0{i + 1}</span>
+                <h3 class="mt-2 font-display text-xl md:text-2xl">{piece.name.replace('Lusitano ', '')}</h3>
+                <p class="mt-1 text-sm text-ash">{piece.short}</p>
+              </div>
+              <span class="shrink-0 text-xs uppercase tracking-[0.14em] text-ash group-hover:text-brass transition-colors">View →</span>
+            </div>
+          </a>
+        ))}
+        <!-- end card -->
+        <a href="/lusitano/story" class="group flex w-[60vw] md:w-[28vw] shrink-0 flex-col items-start justify-center gap-6 bg-night text-ivory p-10 md:p-14">
+          <span class="display-3">The story<br />behind the<br />collection</span>
+          <span class="btn btn-light">Read the story</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MATERIALS MARQUEE + GRID ═══ -->
+  <section class="border-y border-stone bg-parchment py-24 md:py-32 overflow-hidden">
+    <div class="mx-auto max-w-[1600px] px-6 md:px-10">
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <p class="label text-ash mb-4" data-reveal>Honest materials</p>
+          <SplitLines as="h2" class="display-2" text={`Enduring\ncharacter.`} />
+          <p class="mt-6 text-ash max-w-sm" data-reveal>
+            Five materials, chosen for how they age — oak that deepens, brass that patinas, steel that holds its line.
+          </p>
+        </div>
+        <div class="lg:col-span-8" data-reveal-group>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {MATERIALS.slice(0, 5).map((m) => (
+              <figure class="group" data-reveal-item>
+                <div class="img-frame aspect-square">
+                  <img src={m.img} alt={`${m.name} material swatch`} loading="lazy" class="transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <figcaption class="mt-3">
+                  <span class="font-display text-base">{m.name}</span>
+                  <span class="block text-xs text-ash mt-0.5">{m.role}</span>
+                </figcaption>
+              </figure>
+            ))}
+            <div class="hidden md:flex flex-col justify-center p-6 border border-stone" data-reveal-item>
+              <p class="serif-quote text-lg text-ash leading-snug">"A study in contrasts, resolved with quiet precision."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ QUOTE — full bleed parallax ═══ -->
+  <section class="relative flex min-h-[85svh] items-center justify-center overflow-hidden bg-night">
+    <div class="absolute inset-0" data-parallax="0.15">
+      <img src="/images/hero/quote-bg.webp" alt="" class="opacity-50" loading="lazy" />
+    </div>
+    <div class="absolute inset-0 bg-night/40"></div>
+    <blockquote class="relative z-10 max-w-4xl px-6 text-center" data-reveal>
+      <p class="serif-quote display-2 text-ivory leading-tight">
+        "Progress comes not from taking the easy path, but from daring to be creative."
+      </p>
+      <footer class="label mt-8 text-brass">Rui Silva — Founder</footer>
+    </blockquote>
+  </section>
+
+  <!-- ═══ STORY TEASER ═══ -->
+  <section class="px-6 py-24 md:px-10 md:py-36">
+    <div class="mx-auto max-w-[1600px] grid gap-14 lg:grid-cols-2 lg:items-center">
+      <div class="order-2 lg:order-1">
+        <p class="label text-ash mb-4" data-reveal>From fashion to furniture</p>
+        <SplitLines
+          as="h2"
+          class="display-2"
+          text={`15 years of luxury,
+rebuilt by hand.`}
+        />
+        <p class="mt-8 max-w-lg text-ash lede" data-reveal>
+          After 15 years in luxury fashion — most recently as SVP of Creative Operations at FARFETCH — Rui Silva traded the digital for the tangible. One credenza, built for his own living room, became the foundation of a studio.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4" data-reveal>
+          <a href="/about" class="btn btn-solid">Read the full story</a>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2 grid grid-cols-2 gap-4">
+        <Image src="/images/workshop/workshop-golden-hour.webp" alt="The studio workshop framework at golden hour" ratio="3/4" parallax={0.06} clip />
+        <Image src="/images/workshop/working-coffee-table.webp" alt="Working on the Lusitano coffee table" ratio="3/4" parallax={0.1} clip class="mt-12" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NEWSLETTER ═══ -->
+  <section class="border-t border-stone bg-sand/60 px-6 py-20 md:px-10 md:py-28">
+    <div class="mx-auto max-w-[1600px] grid gap-10 md:grid-cols-2 md:items-center">
+      <div data-reveal>
+        <h2 class="display-3">Notes from the workshop</h2>
+        <p class="mt-4 max-w-md text-ash">
+          New pieces, collaboration launches and studio news. Quiet, occasional — this will not flood your inbox.
+        </p>
+      </div>
+      <form class="newsletter-form flex flex-col gap-3 sm:flex-row sm:items-start" data-reveal data-endpoint="https://forms.ruisilvastudio.com/api/newsletter" novalidate>
+        <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div class="field-group flex-1">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input id="newsletter-email" type="email" required placeholder="Email address" class="field w-full" name="email" autocomplete="email" />
+          <p class="field-error" data-error-for="email"></p>
+        </div>
+        <button type="submit" class="btn btn-solid shrink-0" data-submit>
+          <span class="btn-label">Subscribe</span>
+          <span class="btn-spinner" aria-hidden="true"></span>
+        </button>
+        <p class="form-status newsletter-status text-sm sm:basis-full" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <p class="mx-auto mt-4 max-w-[1600px] text-xs text-ash/80">
+      Your email is used only for this newsletter and never shared. See <a href="/privacy-policy" class="underline decoration-dotted hover:text-brass">Privacy & Cookies</a>.
+    </p>
+  </section>
+
+  <script>
+    import { initNewsletterForm } from '../lib/forms';
+    initNewsletterForm('.newsletter-form');
+  </script>
+</Base>

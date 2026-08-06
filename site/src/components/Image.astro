@@ -1,0 +1,21 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  ratio?: string;
+  parallax?: number;
+  clip?: boolean;
+  class?: string;
+  eager?: boolean;
+}
+const { src, alt, ratio = '4/3', parallax, clip = false, class: cls = '', eager = false } = Astro.props;
+---
+
+<div
+  class:list={['img-frame', cls]}
+  style={`aspect-ratio: ${ratio};`}
+  data-parallax={parallax}
+  data-clip={clip || undefined}
+>
+  <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+</div>

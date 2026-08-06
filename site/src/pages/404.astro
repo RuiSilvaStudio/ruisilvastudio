@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import { PIECES } from '../lib/site';
+---
+
+<Base title="Page not found" description="The page you're looking for doesn't exist." noindex darkHeader>
+  <section class="relative flex min-h-[100svh] items-center overflow-hidden bg-night text-ivory">
+    <div class="absolute inset-0" data-parallax="0.12">
+      <img src="/images/hero/credenza-hero.webp" alt="" class="opacity-30" loading="lazy" />
+    </div>
+    <div class="absolute inset-0 bg-night/60"></div>
+
+    <div class="relative z-10 mx-auto w-full max-w-[1600px] px-6 py-32 md:px-10" data-hero>
+      <p class="label text-brass mb-8" data-hero-fade>Error — 404</p>
+      <h1 class="display-hero max-w-4xl">
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">This piece</span></span>
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">isn't in the</span></span>
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">workshop.</span></span>
+      </h1>
+      <p class="mt-8 max-w-md text-ivory/65 lede" data-hero-fade>
+        The page you're looking for was moved, renamed, or never made. Let's get you back to the work.
+      </p>
+      <div class="mt-12 flex flex-wrap gap-4" data-hero-fade>
+        <a href="/" class="btn btn-light">Back to home</a>
+        <a href="/lusitano/story" class="btn btn-light">The Lusitano Collection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- quick nav to pieces -->
+  <section class="border-t border-stone bg-ivory px-6 py-20 md:px-10">
+    <div class="mx-auto max-w-[1600px]">
+      <p class="label text-ash mb-10" data-reveal>Or explore the pieces</p>
+      <div class="grid gap-4 grid-cols-2 lg:grid-cols-5" data-reveal-group>
+        {PIECES.map((piece) => (
+          <a href={`/lusitano/${piece.slug}`} class="group block" data-reveal-item>
+            <div class="img-frame aspect-[3/4]">
+              <img src={piece.card} alt={piece.name} loading="lazy" class="transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <p class="mt-3 font-display text-base group-hover:text-brass transition-colors">{piece.name.replace('Lusitano ', '')}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

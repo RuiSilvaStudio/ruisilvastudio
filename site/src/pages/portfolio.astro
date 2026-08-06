@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import SplitLines from '../components/SplitLines.astro';
+import { SITE } from '../lib/site';
+
+const WORKS = [
+  {
+    title: 'Lusitano Dining Table',
+    tagline: 'A sculptural meeting of wood and porcelain — crafted with precision, designed for quiet gatherings.',
+    images: ['/images/portfolio/lusitano-dining-01.webp', '/images/portfolio/lusitano-dining-02.webp', '/images/portfolio/lusitano-dining-03.webp', '/images/portfolio/lusitano-dining-04.webp'],
+    composition: ['Table top in solid white oak with a porcelain surface', 'Legs and base support in painted steel', 'Stone base in micro concrete, with a terracotta ceramic tile core'],
+    dimensions: 'W 100 × L 240 × H 80 cm',
+  },
+  {
+    title: 'Vimaranis Bedroom',
+    tagline: 'A serene retreat where craftsmanship meets calm geometry. Functional, tactile, and timeless.',
+    images: ['/images/portfolio/vimaranis-bedroom-01.webp', '/images/portfolio/vimaranis-bedroom-02.webp', '/images/portfolio/vimaranis-bedroom-03.webp', '/images/portfolio/vimaranis-bedroom-04.webp'],
+    story: 'Rooted in the birthplace of Portugal, the Vimaranis Collection translates the spirit of Guimarães — its granite foundations, timber façades, and luminous calm — into contemporary form. The geometry evokes the city\'s enduring architecture: the stool\'s sturdiness recalls the granite strength of old Guimarães walls, while the headboard\'s wooden stripes echo the half-timbered upper floors of its traditional houses.',
+    composition: ['Bed, two bedside tables, two lamps, one stool, one headboard, two drawers', 'Solid white oak, natural and painted', 'Lamps in solid oak, concrete and acrylic glazed glass with warm LED'],
+    dimensions: 'Custom dimensions on request',
+  },
+  {
+    title: 'Vimaranis Dining Chair',
+    tagline: 'A sculptural balance of oak and form — refined proportions rooted in architectural rhythm.',
+    images: ['/images/portfolio/vimaranis-chair-01.webp', '/images/portfolio/vimaranis-chair-02.webp'],
+    composition: ['Solid white oak, natural or painted', 'Seat in natural leather or textile, lightly cushioned', 'Optional contrasting wood in seat and back'],
+    dimensions: 'H 136 × W 49.2 × D 59.6 cm · Seat 34.7 cm',
+  },
+  {
+    title: 'Nazareth Collection',
+    tagline: 'Inspired by the Atlantic — a dialogue between craft, sea, and movement.',
+    images: ['/images/portfolio/nazareth-01.webp', '/images/portfolio/nazareth-02.webp', '/images/portfolio/nazareth-03.webp', '/images/portfolio/nazareth-04.webp'],
+    story: 'The Nazareth Collection draws inspiration from Nazaré, the coastal town known for its immense waves and deep cultural bond with the ocean. Curved lines echo tides; polished surfaces recall the reflection of light on water. Wood and metal like shoreline and horizon, stone and glass like foam and depth — calm yet powerful, Nazareth celebrates Portugal\'s maritime soul.',
+    composition: ['All pieces in solid Kambala wood', 'Coffee table top in black marvel stone', 'Bench seating, armrest and back in black leather, for two'],
+    dimensions: 'Lounge chair · Bench · Cabinet · Coffee table',
+  },
+];
+---
+
+<Base title="Portfolio — Forthcoming Designs" description="A confidential preview of forthcoming pieces — designs in their final stages before fabrication. Lusitano, Vimaranis and Nazareth collections." darkHeader>
+  <!-- HERO -->
+  <section class="relative flex min-h-[80svh] items-end overflow-hidden bg-night" data-hero>
+    <div class="absolute inset-0">
+      <img src="/images/portfolio/portfolio-hero.webp" alt="Forthcoming design render" class="absolute inset-0 h-full w-full object-cover" data-hero-img fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/25 to-night/45"></div>
+    </div>
+    <div class="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-20 md:px-10">
+      <p class="label text-brass mb-6" data-hero-fade>Confidential Preview</p>
+      <h1 class="display-hero text-ivory">
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">Forthcoming</span></span>
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">designs.</span></span>
+      </h1>
+      <p class="mt-6 max-w-xl text-ivory/70 lede" data-hero-fade>
+        A glimpse into forthcoming pieces — designs in their final stages before fabrication. Each form reflects an ongoing dialogue between material, proportion, and emotion.
+      </p>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  {WORKS.map((work, i) => (
+    <section class:list={['px-6 py-24 md:px-10 md:py-36', i % 2 === 1 && 'bg-parchment']}>
+      <div class="mx-auto max-w-[1600px]">
+        <div class="mb-14 grid gap-8 lg:grid-cols-12">
+          <div class="lg:col-span-5">
+            <span class="label text-brass" data-reveal>Work 0{i + 1}</span>
+            <SplitLines as="h2" class="display-1 mt-4" text={work.title} />
+          </div>
+          <div class="lg:col-span-7 flex flex-col justify-end">
+            <p class="lede text-ash max-w-xl" data-reveal>{work.tagline}</p>
+            {work.story && <p class="mt-5 text-sm text-ash/90 max-w-xl leading-relaxed" data-reveal>{work.story}</p>}
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2" data-reveal-group>
+          {work.images.map((img, j) => (
+            <div class:list={['img-frame', j === 0 && work.images.length > 2 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-[4/3]']} data-reveal-item>
+              <img src={img} alt={`${work.title} — render ${j + 1}`} loading="lazy" class="transition-transform duration-700 hover:scale-[1.04]" />
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-10 grid gap-8 md:grid-cols-3 border-t border-stone pt-8" data-reveal>
+          <div>
+            <p class="label text-brass mb-3">Composition</p>
+            <ul class="space-y-1.5 text-sm text-ash">
+              {work.composition.map((c) => <li>{c}</li>)}
+            </ul>
+          </div>
+          <div>
+            <p class="label text-brass mb-3">Dimensions</p>
+            <p class="text-sm text-ash">{work.dimensions}</p>
+          </div>
+          <div>
+            <p class="label text-brass mb-3">Availability</p>
+            <p class="text-sm text-ash">Dimensions and finishes specified upon request.</p>
+            <a href="/contact" class="link-sweep label mt-4 inline-block text-ink">Register interest →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="border-t border-stone px-6 py-14 md:px-10">
+    <p class="mx-auto max-w-[1600px] text-xs text-ash/80 leading-relaxed">
+      * All designs and imagery are proprietary to Rui Silva Studio and shared in confidence. Visuals shown are 3D renders representing final aesthetic and material intent. Minor refinements may occur before fabrication.
+    </p>
+  </section>
+</Base>

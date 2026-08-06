@@ -1,0 +1,47 @@
+version: "3.8"
+
+# Rui Silva Studio — Listmonk newsletter stack.
+# Isolated: own network + own Postgres. Does NOT touch supabase-db or career-kb.
+
+networks:
+  studio-net:
+    name: studio-net
+
+services:
+  listmonk-db:
+    image: postgres:16-alpine
+    container_name: studio-listmonk-db
+    restart: unless-stopped
+    networks: [studio-net]
+    environment:
+      POSTGRES_DB: listmonk
+      POSTGRES_USER: listmonk
+      POSTGRES_PASSWORD: ${LISTMONK_DB_PASS}
+    volumes:
+      - listmonk-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U listmonk -d listmonk"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  listmonk:
+    image: listmonk/listmonk:latest
+    container_name: studio-listmonk
+    restart: unless-stopped
+    networks: [studio-net]
+    depends_on:
+      listmonk-db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:9000:9000"
+    environment:
+      TZ: Europe/Lisbon
+    volumes:
+      - ./listmonk-config.toml:/etc/listmonk/config.toml:ro
+      - listmonk-uploads:/listmonk/uploads
+    command: ["./listmonk", "--config", "/etc/listmonk/config.toml"]
+
+volumes:
+  listmonk-db-data:
+  listmonk-uploads:

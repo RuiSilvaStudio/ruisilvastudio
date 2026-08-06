@@ -1,0 +1,17 @@
+---
+interface Props {
+  text: string;
+  class?: string;
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span';
+}
+const { text, class: cls = '', as: Tag = 'h2' } = Astro.props;
+const lines = text.split('\n');
+---
+
+<Tag class={cls} data-lines>
+  {lines.map((line) => (
+    <span class="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
+      <span class="line-inner block">{line}</span>
+    </span>
+  ))}
+</Tag>

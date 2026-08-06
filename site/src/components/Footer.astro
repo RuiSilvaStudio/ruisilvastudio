@@ -1,0 +1,71 @@
+---
+import { SITE } from '../lib/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <!-- Big CTA strip -->
+  <div class="border-b border-ivory/10">
+    <div class="mx-auto max-w-[1600px] px-6 py-20 md:px-10 md:py-28" data-reveal>
+      <p class="label text-brass mb-6">Commissions & Enquiries</p>
+      <a href="/contact" class="group block">
+        <span class="display-1 block max-w-5xl group-hover:text-brass transition-colors duration-500">
+          Let's make something worth keeping.
+        </span>
+        <span class="mt-8 inline-flex items-center gap-3 text-sm tracking-[0.14em] uppercase text-ivory/60 group-hover:text-brass transition-colors duration-500">
+          Start a conversation
+          <svg width="28" height="12" viewBox="0 0 28 12" fill="none" class="transition-transform duration-500 group-hover:translate-x-2">
+            <path d="M0 6h26M21 1l6 5-6 5" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-[1600px] px-6 py-16 md:px-10">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <img src="/images/brand/logo-white.png" alt="" class="h-10 w-10 mb-5 opacity-90" />
+        <p class="font-display text-lg">{SITE.name}</p>
+        <p class="mt-1 text-sm text-ivory/50 max-w-xs">{SITE.tagline} — collectible furniture handcrafted in Portugal.</p>
+      </div>
+
+      <div class="md:col-span-2">
+        <p class="label text-ivory/40 mb-5">Contact</p>
+        <ul class="space-y-2 text-sm text-ivory/70">
+          <li><a href={`mailto:${SITE.email}`} class="link-sweep">{SITE.email}</a></li>
+          <li><a href={`tel:${SITE.phoneHref}`} class="link-sweep">{SITE.phone}</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-2">
+        <p class="label text-ivory/40 mb-5">Studio</p>
+        <address class="not-italic text-sm text-ivory/70 leading-relaxed">
+          {SITE.address.street}<br />
+          {SITE.address.locality}<br />
+          {SITE.address.postal}<br />
+          {SITE.address.country}
+        </address>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="label text-ivory/40 mb-5">Menu</p>
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-ivory/70">
+          <li><a href="/about" class="link-sweep">About</a></li>
+          <li><a href="/lusitano/story" class="link-sweep">Collection</a></li>
+          <li><a href="/portfolio" class="link-sweep">Studio Works</a></li>
+          <li><a href="/studio-partnership" class="link-sweep">Partnership</a></li>
+          <li><a href="/faqs" class="link-sweep">FAQs</a></li>
+          <li><a href="/contact" class="link-sweep">Contact</a></li>
+          <li><a href="/privacy-policy" class="link-sweep">Privacy</a></li>
+          <li><a href="/terms-conditions" class="link-sweep">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col gap-3 border-t border-ivory/10 pt-8 text-xs text-ivory/40 md:flex-row md:items-center md:justify-between">
+      <p>© {year} {SITE.name}. All assets, images, and 3D renderings were created or photographed by {SITE.name} unless otherwise stated.</p>
+      <p>Feel free to share — please do not take credit.</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,220 @@
+---
+import Base from '../layouts/Base.astro';
+import SplitLines from '../components/SplitLines.astro';
+import Image from '../components/Image.astro';
+import { PIECES, SITE } from '../lib/site';
+
+const aboutLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Rui Silva Studio',
+  url: `${SITE.url}/about`,
+};
+---
+
+<Base title="About" description="A journey of passion, purpose and craft — from 15 years in luxury fashion to collectible furniture handcrafted in Guimarães, Portugal." darkHeader jsonLd={aboutLd}>
+  <!-- HERO -->
+  <section class="relative flex min-h-[88svh] items-end overflow-hidden bg-night" data-hero>
+    <div class="absolute inset-0">
+      <img src="/images/workshop/about-hero.webp" alt="Rui Silva Studio workshop" class="absolute inset-0 h-full w-full object-cover" data-hero-img fetchpriority="high" />
+      <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/25 to-night/45"></div>
+    </div>
+    <div class="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-20 md:px-10">
+      <p class="label text-brass mb-6" data-hero-fade>The Studio</p>
+      <h1 class="display-hero text-ivory max-w-5xl">
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">A journey of passion,</span></span>
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">purpose & craft.</span></span>
+      </h1>
+      <p class="mt-6 max-w-xl text-ivory/70 lede" data-hero-fade>
+        Creative soul, blending vision with skill. From luxury fashion to furniture design — a creative journey from digital to tangible.
+      </p>
+    </div>
+  </section>
+
+  <!-- MY STORY — editorial chapters -->
+  <section id="my-story" class="px-6 py-24 md:px-10 md:py-36">
+    <div class="mx-auto max-w-[1600px]">
+      <div class="grid gap-16 lg:grid-cols-12">
+        <!-- sticky side -->
+        <aside class="lg:col-span-4">
+          <div class="lg:sticky lg:top-32">
+            <p class="label text-ash mb-4" data-reveal>My story</p>
+            <SplitLines as="h2" class="display-2" text={`In early 2024,
+I moved away to
+make space to
+breathe.`} />
+            <div class="mt-12 flex items-center gap-8" data-reveal>
+              <div>
+                <span class="font-display text-7xl text-brass">15</span>
+                <span class="label block mt-1 text-ash">Years in luxury<br />fashion</span>
+              </div>
+              <div class="h-16 w-px bg-stone"></div>
+              <div>
+                <span class="font-display text-7xl text-ink">1</span>
+                <span class="label block mt-1 text-ash">Credenza that<br />started it all</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- chapters -->
+        <div class="lg:col-span-8 space-y-24">
+          <article class="grid gap-8 md:grid-cols-12" data-reveal>
+            <span class="font-display text-6xl text-fog md:col-span-2">P</span>
+            <div class="md:col-span-10">
+              <h3 class="label text-brass mb-4">Passion</h3>
+              <p class="text-ash lede">
+                At the time, I had just moved into a new house. Out back, I'd built a wooden workshop, mainly for woodworking as a hobby. One afternoon, I designed a credenza media console for my own living room. I wasn't expecting much — but the result was solid, and the feedback I got made me pause. That single piece reignited my passion for creativity and for turning that creativity into something meaningful.
+              </p>
+            </div>
+          </article>
+
+          <Image src="/images/workshop/first-credenza-02.webp" alt="The first credenza in the workshop" ratio="16/9" clip />
+
+          <article class="grid gap-8 md:grid-cols-12" data-reveal>
+            <span class="font-display text-6xl text-fog md:col-span-2">P</span>
+            <div class="md:col-span-10">
+              <h3 class="label text-brass mb-4">Purpose</h3>
+              <p class="text-ash lede">
+                Each new piece pulled me further in. I wasn't just making furniture — I was reconnecting with the kind of work I thought I'd lost. Work that's hands-on. Built to last. Meant to be used. Meant to be kept.
+              </p>
+            </div>
+          </article>
+
+          <article class="grid gap-8 md:grid-cols-12" data-reveal>
+            <span class="font-display text-6xl text-fog md:col-span-2">C</span>
+            <div class="md:col-span-10">
+              <h3 class="label text-brass mb-4">Craft</h3>
+              <p class="text-ash lede">
+                That credenza wasn't just furniture. It was reconnecting with something deeper: honest, hands-on work. Creating things built to last. Designing not just to look nice, but to be used, kept, cherished — with a cultural reference. And piece by piece, that belief grew into Rui Silva Studio.
+              </p>
+            </div>
+          </article>
+
+          <Image src="/images/workshop/first-credenza-01.webp" alt="Workshop detail — crafting the first credenza" ratio="16/9" clip />
+
+          <div class="border-l-2 border-brass pl-8" data-reveal>
+            <p class="serif-quote text-2xl text-ink/85 leading-snug">
+              "Today, as I reflect on the journey that brought me here, I am filled with gratitude for every twist and turn — each chapter a story of passion, perseverance, and the unyielding belief in the transformative power of creativity."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATE OF CRAFTSMANSHIP -->
+  <section id="context" class="bg-night text-ivory px-6 py-24 md:px-10 md:py-36">
+    <div class="mx-auto max-w-[1600px]">
+      <div class="max-w-3xl">
+        <p class="label text-brass mb-4" data-reveal>Context</p>
+        <SplitLines as="h2" class="display-1" text={`The state of
+craftsmanship.`} />
+        <p class="mt-8 text-ivory/60 lede" data-reveal>
+          The world of mass furniture is dominated by fast production, short lifespans, and waste — optimized for cost, not for soul. A gap is growing between what's cheap and easy to produce versus what's meaningful and built to last.
+        </p>
+      </div>
+
+      <div class="mt-20 grid gap-px bg-ivory/10 md:grid-cols-3" data-reveal-group>
+        <div class="bg-night p-10" data-reveal-item>
+          <span class="font-display text-4xl text-brass">—</span>
+          <h3 class="mt-6 font-display text-xl">The problem</h3>
+          <p class="mt-4 text-sm text-ivory/60 leading-relaxed">
+            Craft traditions are under threat: fewer artisans, fewer hand skills, rising costs. Many techniques risk disappearing as production optimizes for volume.
+          </p>
+        </div>
+        <div class="bg-night p-10" data-reveal-item>
+          <span class="font-display text-4xl text-brass">+</span>
+          <h3 class="mt-6 font-display text-xl">The alternative</h3>
+          <p class="mt-4 text-sm text-ivory/60 leading-relaxed">
+            Timeless design and quality. Meaningful customization over trendy SKU churn. Transparent provenance. Sustainability and stewardship — avoiding disposability, honoring material and craft.
+          </p>
+        </div>
+        <div class="bg-night p-10" data-reveal-item>
+          <span class="font-display text-4xl text-brass">→</span>
+          <h3 class="mt-6 font-display text-xl">Why now</h3>
+          <p class="mt-4 text-sm text-ivory/60 leading-relaxed">
+            Environmental urgency: designing to last has immediate impact. Cultural stewardship: every enduring piece preserves vocabulary and tacit knowledge that would otherwise vanish.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-20 border-l-2 border-brass pl-8 max-w-3xl" data-reveal>
+        <p class="serif-quote display-3 leading-snug">"We make fewer. We make better. We make personal."</p>
+        <p class="mt-6 text-ivory/60">
+          Pieces that aren't just functional, but lasting. That carry a story, feel good to use, deserve to be kept. Furniture as cultural infrastructure — objects that help anchor people, stories, identity.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section id="manifesto" class="px-6 py-24 md:px-10 md:py-36">
+    <div class="mx-auto max-w-[1600px]">
+      <div class="grid gap-14 lg:grid-cols-2 lg:items-start">
+        <div>
+          <p class="label text-ash mb-4" data-reveal>Manifesto</p>
+          <SplitLines as="h2" class="display-1" text={`We believe
+creativity is a
+community act.`} />
+          <div class="mt-10">
+            <Image src="/images/workshop/working-coffee-table.webp" alt="Working on the Lusitano coffee table" ratio="4/3" clip />
+          </div>
+        </div>
+        <div class="space-y-8 lg:pt-24 max-w-xl">
+          <p class="text-ash lede" data-reveal>
+            <strong class="font-medium text-ink">We believe</strong> prosperity comes not from cost optimization, but from creativity. Every great leap in human history has been born from imagination, expression, and the courage to make differently — not cheaper.
+          </p>
+          <p class="text-ash lede" data-reveal>
+            <strong class="font-medium text-ink">We refuse</strong> the culture of disposability. Furniture should carry values, stories, and soul. When objects become uniform, culture flattens; when they are expressive, culture flourishes.
+          </p>
+          <p class="text-ash lede" data-reveal>
+            <strong class="font-medium text-ink">We believe</strong> more makers, not more volume, create more space for everyone. A world with diverse designers and artisans is a world with richer culture, deeper identity, and greater resilience.
+          </p>
+          <p class="text-ash lede" data-reveal>
+            <strong class="font-medium text-ink">We choose</strong> to optimize for creativity, quality, and expression — never for sameness. Our studio is not a factory; it is a community of voices, each piece carrying both an individual hand and a collective imprint.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community" class="relative flex min-h-[80svh] items-center overflow-hidden bg-night">
+    <div class="absolute inset-0" data-parallax="0.12">
+      <img src="/images/workshop/community.webp" alt="" class="opacity-45" loading="lazy" />
+    </div>
+    <div class="absolute inset-0 bg-night/45"></div>
+    <div class="relative z-10 mx-auto max-w-[1600px] px-6 py-28 md:px-10">
+      <blockquote class="max-w-4xl" data-reveal>
+        <p class="serif-quote display-1 text-ivory leading-tight">
+          "A single artisan can shape a table; a connected community can shape a culture."
+        </p>
+      </blockquote>
+      <p class="mt-10 max-w-2xl text-ivory/70 lede" data-reveal>
+        Craft is not a solitary pursuit — it is a network. Each piece carries not just the hand of its maker but the collective imprint of a community: suppliers who choose sustainable paths, artisans who preserve endangered techniques, partners who share our belief that creativity is cultural infrastructure.
+      </p>
+      <a href="/studio-partnership" class="btn btn-light mt-10" data-reveal>Join the Studio Partnership</a>
+    </div>
+  </section>
+
+  <!-- COLLECTION STRIP -->
+  <section class="px-6 py-24 md:px-10 md:py-32">
+    <div class="mx-auto max-w-[1600px]">
+      <div class="mb-12 flex items-end justify-between">
+        <h2 class="display-2" data-reveal>The Lusitano pieces</h2>
+        <a href="/lusitano/story" class="link-sweep label hidden md:block" data-reveal>Full collection →</a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5" data-reveal-group>
+        {PIECES.map((piece) => (
+          <a href={`/lusitano/${piece.slug}`} class="group block" data-reveal-item>
+            <div class="img-frame aspect-[3/4]">
+              <img src={piece.card} alt={piece.name} loading="lazy" class="transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <p class="mt-3 font-display text-base group-hover:text-brass transition-colors">{piece.name.replace('Lusitano ', '')}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
+
+const SECTIONS = [
+  {
+    title: '1. Introduction and acceptance',
+    body: [
+      'These Terms & Conditions ("Terms") govern your use of the website www.ruisilvastudio.com (the "Site"), which is operated by Rui Silva, an independent furniture designer based in Portugal. By accessing or using this Site, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please do not use the Site.',
+      'A separate Privacy & Cookie Policy explains how I collect and process personal data; it is incorporated into these Terms by reference.',
+    ],
+  },
+  {
+    title: '2. Intellectual property',
+    body: [
+      'Unless otherwise noted, all content on the Site — including text, images, designs, photographs, 3D renderings, logos, and other materials — is owned by me or used under licence. My work is protected by copyright and other intellectual-property laws.',
+      'You may view and download content for your own personal, non-commercial use, and share my work on social media or personal blogs, provided you credit me (e.g., "Furniture design by Rui Silva" with a link back to www.ruisilvastudio.com).',
+      'You may not use any content for commercial purposes without prior written permission; modify, distribute, reproduce, or exploit any content for commercial gain; or remove any copyright, trademark or other proprietary notices. Unauthorized use may violate intellectual-property laws and could result in legal action.',
+    ],
+  },
+  {
+    title: '3. Permitted use and conduct',
+    body: [
+      'You agree to use the Site for lawful purposes only. Prohibited activities include violating any local, national or international law; infringing on intellectual-property rights; introducing malware, spam or other harmful technologies; and attempting to gain unauthorized access to the Site or its systems.',
+      'I reserve the right to terminate or restrict your access if you violate these Terms or engage in abusive behaviour.',
+    ],
+  },
+  {
+    title: '4. External links',
+    body: ['The Site may include links to third-party websites or resources, provided for information only. I have no control over the content or practices of those websites and am not responsible for any loss or damage that may arise from your use of them.'],
+  },
+  {
+    title: '5. Disclaimer and limitation of liability',
+    body: [
+      'The information on this Site is provided "as is" for general informational purposes. While I strive for accuracy, I make no warranties or representations about the completeness, reliability or accuracy of the content. To the fullest extent permitted by law, I exclude all liability for any losses or damages arising from your use of, or reliance on, the Site or its content.',
+      'I cannot guarantee that the Site will be free of viruses or other harmful components. You are responsible for implementing adequate protection and backup procedures.',
+    ],
+  },
+  {
+    title: '6. Governing law and jurisdiction',
+    body: ['These Terms, and any dispute or claim arising out of or in connection with them, are governed by Portuguese law. You agree that the courts of Portugal will have exclusive jurisdiction.'],
+  },
+  {
+    title: '7. Changes to these terms',
+    body: ['I may modify these Terms from time to time. Changes will be posted on this page with an updated "Last Updated" date. Your continued use of the Site after any changes constitutes acceptance of the revised Terms.'],
+  },
+  {
+    title: '8. Contact information',
+    body: [`Questions or requests regarding these Terms: Rui Silva, ${SITE.address.street}, ${SITE.address.locality}, ${SITE.address.postal}, ${SITE.address.country} — ${SITE.phone} — ${SITE.email}.`],
+  },
+];
+---
+
+<Base title="Terms & Conditions" description="Terms and conditions governing the use of ruisilvastudio.com — intellectual property, permitted use, liability and governing law.">
+  <section class="px-6 pt-40 pb-24 md:px-10 md:pt-52">
+    <div class="mx-auto max-w-3xl">
+      <p class="label text-ash mb-6" data-reveal>Legal</p>
+      <h1 class="display-1" data-reveal>Terms & Conditions</h1>
+      <p class="mt-4 text-sm text-ash" data-reveal>Last updated: 08/2026</p>
+
+      <div class="mt-16 space-y-14">
+        {SECTIONS.map((s) => (
+          <section data-reveal>
+            <h2 class="font-display text-2xl mb-4">{s.title}</h2>
+            {s.body.map((p) => <p class="text-ash leading-relaxed mb-4">{p}</p>)}
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
