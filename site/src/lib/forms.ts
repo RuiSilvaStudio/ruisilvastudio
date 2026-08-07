@@ -72,7 +72,7 @@ export function initContactForm(selector: string) {
     const valid = validate(form, {
       name: (v) => (v.length < 2 ? 'Please tell me your name.' : null),
       email: (v) => (!EMAIL_RE.test(v) ? 'That email doesn\'t look right.' : null),
-      message: (v) => (v.length < 10 ? 'A few more words, please — at least 10 characters.' : null),
+      message: (v) => (v.length < 10 ? 'A few more words, please - at least 10 characters.' : null),
     });
     if (!valid) {
       setState(form, 'error', 'Please review the highlighted fields.');
@@ -101,7 +101,7 @@ export function initNewsletterForm(selector: string) {
       e.preventDefault();
       const honey = form.querySelector<HTMLInputElement>('[name="company"]');
       if (honey && honey.value) {
-        setState(form, 'success', 'Thank you — please check your inbox to confirm.');
+        setState(form, 'success', 'Thank you - please check your inbox to confirm.');
         form.reset();
         return;
       }

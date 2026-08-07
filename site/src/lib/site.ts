@@ -53,7 +53,7 @@ export const PIECES: Piece[] = [
     short: 'A console where storage becomes architecture.',
     description: [
       'I designed the Credenza as storage with architectural presence. Oak brings warmth; steel sharpens the lines; ceramic adds a quiet, durable surface. Integrated cable management and wireless charging keep technology out of sight while the piece remains calm in the room.',
-      'Every credenza is made to order in my Studio workshop, with the possibility to tailor finishes to your home. Whether in oak, walnut, or another species, I craft each one as a lasting object — to be lived with over time.',
+      'Every credenza is made to order in my Studio workshop, with the possibility to tailor finishes to your home. Whether in oak, walnut, or another species, I craft each one as a lasting object - to be lived with over time.',
     ],
     card: '/images/collection/credenza-card.webp',
     images: ['/images/products/credenza/credenza-01.webp', '/images/products/credenza/credenza-02.webp', '/images/hero/credenza-hero.webp'],
@@ -75,15 +75,15 @@ export const PIECES: Piece[] = [
       { label: 'Height', value: '86.5 cm' },
       { label: 'Depth', value: '52 cm' },
     ],
-    customisation: ['Wood and ceramic — materials and finishes adapted to your project on request.'],
-    suggestion: { text: 'For a smaller counterpart to the Credenza, I suggest the Lusitano Coffee Table — sharing the same crafted balance in oak and steel.', pieceSlug: 'coffee-table' },
+    customisation: ['Wood and ceramic - materials and finishes adapted to your project on request.'],
+    suggestion: { text: 'For a smaller counterpart to the Credenza, I suggest the Lusitano Coffee Table - sharing the same crafted balance in oak and steel.', pieceSlug: 'coffee-table' },
   },
   {
     slug: 'coffee-table',
     name: 'Lusitano Coffee Table',
     short: 'Where oak, steel, and glass meet in sculpture.',
     description: [
-      'The Lusitano Coffee Table was designed as a sculptural centrepiece — a composition of oak and steel that defines a living space. Each tabletop is crafted in solid oak, joined and finished by hand, with brushed steel details that frame the geometry.',
+      'The Lusitano Coffee Table was designed as a sculptural centrepiece - a composition of oak and steel that defines a living space. Each tabletop is crafted in solid oak, joined and finished by hand, with brushed steel details that frame the geometry.',
       'Every table is made to order in my Studio workshop, with the option to tailor finishes. Whether paired with the Lusitano Credenza or placed on its own, it is a piece intended to hold presence in daily life.',
     ],
     card: '/images/collection/coffee-table-card.webp',
@@ -112,7 +112,7 @@ export const PIECES: Piece[] = [
     name: 'Lusitano Sofa-side Bookshelf',
     short: 'A console designed to live with.',
     description: [
-      'I designed this piece to live with the sofa — a slim console with integrated shelves that keeps books and objects close to hand. Oak brings warmth; the satin black frame gives definition.',
+      'I designed this piece to live with the sofa. A slim console with integrated shelves that keeps books and objects close to hand. Oak brings warmth; the satin black frame gives definition.',
       'The proportions are quiet and deliberate, allowing it to sit discreetly against the armrest while adding useful surface and rhythm to the room. Each is made to order, conceived as part of the Lusitano collection but working equally as a stand-alone piece.',
     ],
     card: '/images/collection/bookshelf-card.webp',
@@ -147,14 +147,14 @@ export const PIECES: Piece[] = [
     ],
     customisation: ['Lampshade can be swapped on request', 'Steel colour, other metals and wood species on request'],
     technical: ['European socket, prepared for 220V / 16A'],
-    suggestion: { text: 'A simple surface for everyday presence — the Lusitano Sofa Armrest completes the living setting.', pieceSlug: 'sofa-armrest' },
+    suggestion: { text: 'A simple surface for everyday presence - the Lusitano Sofa Armrest completes the living setting.', pieceSlug: 'sofa-armrest' },
   },
   {
     slug: 'sofa-armrest',
     name: 'Lusitano Sofa Armrest',
     short: 'A simple surface for everyday presence.',
     description: [
-      'I made this armrest tray to add a simple, stable surface where you relax most. It sits securely over the sofa arm, bringing a small piece of solid oak into daily use — a place for a book, a cup, or the evening ritual.',
+      'I made this armrest tray to add a simple, stable surface where you relax most. It sits securely over the sofa arm, bringing a small piece of solid oak into daily use - a place for a book, a cup, or the evening ritual.',
     ],
     card: '/images/collection/armrest-card.webp',
     images: ['/images/products/armrest/armrest-01.webp', '/images/products/armrest/armrest-02.webp'],
@@ -180,23 +180,23 @@ export const MATERIALS = [
 export const FAQS = [
   {
     q: 'Do you ship internationally?',
-    a: 'Yes — we arrange international shipping for our pieces. Because every item is made to order, costs, timelines, duties and taxes vary by destination. We provide full information and delivery support when you contact us about your order.',
+    a: 'Yes - we arrange international shipping for our pieces. Because every item is made to order, costs, timelines, duties and taxes vary by destination. We provide full information and delivery support when you contact us about your order.',
   },
   {
     q: 'Can I customize one of your existing pieces?',
-    a: 'Yes — dimensions, finishes and materials can be customised within reason, always respecting each piece’s structural integrity and available materials. The core design of each work cannot be modified, as it is part of a limited collection.',
+    a: 'Yes - dimensions, finishes and materials can be customised within reason, always respecting each piece’s structural integrity and available materials. The core design of each work cannot be modified, as it is part of a limited collection.',
   },
   {
     q: 'How can I place an order or request a quote?',
-    a: 'All orders and inquiries are handled personally. Contact us by email to start the conversation — we’ll guide you through quotes, lead times and customisation, and may continue by phone or video call for a more personal, detailed experience.',
+    a: 'All orders and inquiries are handled personally. Contact us by email to start the conversation - we’ll guide you through quotes, lead times and customisation, and may continue by phone or video call for a more personal, detailed experience.',
   },
   {
     q: 'Do you accept bespoke commissions?',
-    a: 'We’re open to bespoke projects when they align with the studio’s design language and values. Rather than acting as an OEM, we view custom work as a collaboration — a shared exploration that builds on our creative direction.',
+    a: 'We’re open to bespoke projects when they align with the studio’s design language and values. Rather than acting as an OEM, we view custom work as a collaboration - a shared exploration that builds on our creative direction.',
   },
   {
     q: 'Can I view your pieces in person?',
-    a: 'Yes — studio visits are welcome by appointment. We’re based in northern Portugal; the space isn’t a public showroom, but we’re happy to host clients who’d like to experience the pieces firsthand.',
+    a: 'Yes - studio visits are welcome by appointment. We’re based in northern Portugal; the space isn’t a public showroom, but we’re happy to host clients who’d like to experience the pieces firsthand.',
   },
   {
     q: 'What are your typical lead times?',

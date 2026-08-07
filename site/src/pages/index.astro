@@ -37,7 +37,7 @@ const homeLd = {
         </h1>
         <div class="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <p class="max-w-md text-ivory/70 lede" data-hero-fade>
-            Collectible pieces handcrafted in Portugal — oak, steel, brass and porcelain, made to be lived with, admired, and kept.
+            Collectible pieces handcrafted in Portugal - oak, steel, brass and porcelain, made to be lived with, admired, and kept.
           </p>
           <div class="flex items-center gap-4" data-hero-fade>
             <a href="/lusitano/story" class="btn btn-light">Discover the Collection</a>
@@ -87,7 +87,7 @@ We make personal.`}
 Practical elegance.`}
         />
         <p class="mt-8 max-w-lg text-ivory/65 lede" data-reveal>
-          The Lusitano Collection was born from a personal project that grew into a vision — furniture designed with discipline, strength, and elegance. Inspired by Portugal's noble horse, each piece balances practicality with refined presence.
+          The Lusitano Collection was born from a personal project that grew into a vision - furniture designed with discipline, strength, and elegance. Inspired by Portugal's noble horse, each piece balances practicality with refined presence.
         </p>
         <div class="mt-10" data-reveal>
           <a href="/lusitano/story" class="btn btn-light">The Collection Story</a>
@@ -142,7 +142,7 @@ Practical elegance.`}
           <p class="label text-ash mb-4" data-reveal>Honest materials</p>
           <SplitLines as="h2" class="display-2" text={`Enduring\ncharacter.`} />
           <p class="mt-6 text-ash max-w-sm" data-reveal>
-            Five materials, chosen for how they age — oak that deepens, brass that patinas, steel that holds its line.
+            Five materials, chosen for how they age - oak that deepens, brass that patinas, steel that holds its line.
           </p>
         </div>
         <div class="lg:col-span-8" data-reveal-group>
@@ -193,7 +193,7 @@ Practical elegance.`}
 rebuilt by hand.`}
         />
         <p class="mt-8 max-w-lg text-ash lede" data-reveal>
-          After 15 years in luxury fashion — most recently as SVP of Creative Operations at FARFETCH — Rui Silva traded the digital for the tangible. One credenza, built for his own living room, became the foundation of a studio.
+          After 15 years in luxury fashion - most recently as SVP of Creative Operations at FARFETCH - Rui Silva traded the digital for the tangible. One credenza, built for his own living room, became the foundation of a studio.
         </p>
         <div class="mt-10 flex flex-wrap gap-4" data-reveal>
           <a href="/about" class="btn btn-solid">Read the full story</a>
@@ -212,21 +212,23 @@ rebuilt by hand.`}
       <div data-reveal>
         <h2 class="display-3">Notes from the workshop</h2>
         <p class="mt-4 max-w-md text-ash">
-          New pieces, collaboration launches and studio news. Quiet, occasional — this will not flood your inbox.
+          New pieces, collaboration launches and studio news. Quiet, occasional - this will not flood your inbox.
         </p>
       </div>
-      <form class="newsletter-form flex flex-col gap-3 sm:flex-row sm:items-start" data-reveal data-endpoint="https://forms.ruisilvastudio.com/api/newsletter" novalidate>
+      <form class="newsletter-form flex flex-col gap-3" data-reveal data-endpoint="https://forms.ruisilvastudio.com/api/newsletter" novalidate>
         <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <div class="field-group flex-1">
-          <label for="newsletter-email" class="sr-only">Email address</label>
-          <input id="newsletter-email" type="email" required placeholder="Email address" class="field w-full" name="email" autocomplete="email" />
-          <p class="field-error" data-error-for="email"></p>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
+          <div class="field-group flex-1 min-w-0">
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input id="newsletter-email" type="email" required placeholder="Email address" class="field w-full" name="email" autocomplete="email" />
+            <p class="field-error" data-error-for="email"></p>
+          </div>
+          <button type="submit" class="btn btn-solid shrink-0" data-submit>
+            <span class="btn-label">Subscribe</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
         </div>
-        <button type="submit" class="btn btn-solid shrink-0" data-submit>
-          <span class="btn-label">Subscribe</span>
-          <span class="btn-spinner" aria-hidden="true"></span>
-        </button>
-        <p class="form-status newsletter-status text-sm sm:basis-full" role="status" aria-live="polite"></p>
+        <p class="form-status newsletter-status text-sm" role="status" aria-live="polite"></p>
       </form>
     </div>
     <p class="mx-auto mt-4 max-w-[1600px] text-xs text-ash/80">
