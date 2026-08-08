@@ -1,0 +1,15 @@
+.git/
+.env
+*.env
+**/api.env
+**/smtp.env
+**/listmonk.env
+node_modules/
+__pycache__/
+*.pyc
+.hermes/
+.opencode/
+graphify-out/
+docs/
+*.md
+listmonk/
