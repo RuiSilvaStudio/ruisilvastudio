@@ -23,8 +23,11 @@ Add the Gitea remote:
 
 ```bash
 cd ~/projects/ruisilvastudio
-git remote add gitea git@192.168.1.98:rui/ruisilvastudio.git
+git remote add gitea ssh://git@192.168.1.98:2222/rui/ruisilvastudio.git
 ```
+
+> **Note:** Gitea's SSH listens on port **2222**, not 22 — the URL must include it.
+> (Local checkout path may also differ, e.g. `~/projects/rui-silva-studio`.)
 
 Test it works:
 
