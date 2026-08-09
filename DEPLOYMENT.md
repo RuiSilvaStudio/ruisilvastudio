@@ -1,6 +1,6 @@
 # Rui Silva Studio — Deployment Guide
 
-**Last updated:** 2026-08-07 · **Repo:** [RuiSilvaStudio/ruisilvastudio](https://github.com/RuiSilvaStudio/ruisilvastudio)
+**Last updated:** 2026-08-09 · **Repo:** [RuiSilvaStudio/ruisilvastudio](https://github.com/RuiSilvaStudio/ruisilvastudio)
 
 This document describes how the ruisilvastudio.com stack is deployed and how to operate it.
 It is written for two audiences: Rui, and any future agent/session working on this project.
@@ -8,6 +8,49 @@ It is written for two audiences: Rui, and any future agent/session working on th
 > ⚠️ **Server-side details marked `⚠ UNVERIFIED`** were written from repo sources and session
 > notes, not re-confirmed live on the server (SSH was unavailable at write time). Verify on
 > next server access and remove the marker.
+
+---
+
+## 0. ⚠️ NEW: Deployment Pipeline (READ FIRST)
+
+**You no longer deploy directly to .229.** All deployments go through the Atlas pipeline:
+
+```
+Your push to Gitea → Atlas validates → GitHub → .229
+```
+
+### Quick Rules
+
+| Branch | Purpose | Who Pushes |
+|--------|---------|------------|
+| `main` | Daily development | You (dev desktop) |
+| `deploy` | Production | **Only via PR merge** |
+
+### The Only Workflow
+
+```bash
+# 1. Daily work — push to main
+git add -A
+git commit -m "your change"
+git push gitea main
+
+# 2. Deploy — create PR main → deploy in Gitea
+# Go to: http://192.168.1.98:3000/rui/ruisilvastudio/compare/deploy...main
+# Click "New Pull Request", then "Create Pull Request"
+# Atlas validates and comments
+# You merge → Atlas deploys to .229
+```
+
+### Never Do
+
+- ❌ `git push origin main` — bypasses pipeline
+- ❌ `git push gitea deploy` — deploy only via PR
+- ❌ `ssh rui@192.168.1.229` — desktop has no .229 access
+- ❌ `rsync`, `docker`, or manual deploy commands — Atlas handles
+
+### Full Instructions
+
+See `AGENTS-PIPELINE.md` in this repo for complete agent instructions.
 
 ---
 
