@@ -1,0 +1,8 @@
+{
+  "name": "ruisilvastudio",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix site run build",
+    "dev": "npm --prefix site run dev"
+  }
+}
