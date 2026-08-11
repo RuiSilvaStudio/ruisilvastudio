@@ -1,0 +1,228 @@
+---
+import Base from '../layouts/Base.astro';
+import SplitLines from '../components/SplitLines.astro';
+import { SITE } from '../lib/site';
+
+const BOOKING_URL = 'https://booking.ruisilvastudio.com';
+
+const bookingLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Book a Visit — Rui Silva Studio',
+  provider: { '@type': 'ProfessionalService', name: SITE.name, url: SITE.url },
+  url: `${SITE.url}/booking`,
+  description: 'Schedule a studio visit or video call with Rui Silva Studio in Guimarães, Portugal.',
+};
+---
+
+<Base title="Book a Visit" description="Schedule a studio visit or video call with Rui Silva Studio. Visit the atelier in Guimarães or connect remotely." darkHeader jsonLd={bookingLd}>
+  <!-- ═══ HERO ═══ -->
+  <section class="relative min-h-[70svh] flex items-center overflow-hidden bg-night">
+    <div class="absolute inset-0">
+      <img
+        src="/images/workshop/workshop-golden-hour.webp"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover opacity-35"
+        data-hero-img
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-night/60 via-night/45 to-night/85"></div>
+    </div>
+
+    <div class="relative z-10 w-full px-6 pt-40 pb-20 md:px-10 md:pt-52 md:pb-28">
+      <div class="mx-auto max-w-[1600px]">
+        <p class="label text-brass mb-6" data-reveal>Visit the Studio</p>
+        <SplitLines
+          as="h1"
+          class="display-hero text-ivory max-w-4xl"
+          text={`Step into the\nworkshop.`}
+        />
+        <p class="mt-8 max-w-xl text-ivory/65 lede" data-reveal>
+          The atelier in Guimarães is where every piece takes shape. Book a visit to experience the collection in person, or schedule a video call from wherever you are.
+        </p>
+      </div>
+    </div>
+
+    <!-- scroll cue -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:block" data-hero-fade>
+      <div class="h-14 w-px bg-gradient-to-b from-transparent via-ivory/40 to-ivory/8"></div>
+    </div>
+  </section>
+
+  <!-- ═══ EVENT TYPE CARDS + EMBED ═══ -->
+  <section class="px-6 py-20 md:px-10 md:py-28 bg-ivory" id="book">
+    <div class="mx-auto max-w-[1600px]">
+      <p class="label text-ash mb-4" data-reveal>Choose how to connect</p>
+
+      <!-- Event type toggle -->
+      <div class="grid gap-6 md:grid-cols-2 mb-16" data-reveal-group>
+        <button
+          id="pick-studio"
+          class="event-card group relative overflow-hidden border border-stone bg-night text-ivory p-8 md:p-12 text-left transition-all duration-500 cursor-pointer active"
+          data-event="studio-visit"
+          aria-pressed="true"
+        >
+          <div class="relative z-10">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brass/20 mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brass">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9,22 9,12 15,12 15,22"/>
+              </svg>
+            </span>
+            <h2 class="font-display text-2xl md:text-3xl tracking-tight">Studio Visit</h2>
+            <p class="mt-3 max-w-xs text-ivory/55 leading-relaxed">
+              Visit the atelier in Guimarães. See the collection up close, discuss materials and customisation in person.
+            </p>
+            <ul class="mt-5 space-y-1.5 text-sm text-ivory/45">
+              <li class="flex items-center gap-2"><span class="text-brass">—</span> 45 minutes</li>
+              <li class="flex items-center gap-2"><span class="text-brass">—</span> Rua Rio Ave, 1970 · Guimarães</li>
+              <li class="flex items-center gap-2"><span class="text-brass">—</span> In-person</li>
+            </ul>
+          </div>
+          <!-- selected indicator -->
+          <div class="event-card-indicator absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-brass to-brass/0 scale-x-0 origin-left transition-transform duration-500"></div>
+        </button>
+
+        <button
+          id="pick-video"
+          class="event-card group relative overflow-hidden border border-stone bg-parchment text-ink p-8 md:p-12 text-left transition-all duration-500 cursor-pointer"
+          data-event="video-call"
+          aria-pressed="false"
+        >
+          <div class="relative z-10">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brass/10 mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-brass">
+                <polygon points="23,7 16,12 23,17 23,7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+              </svg>
+            </span>
+            <h2 class="font-display text-2xl md:text-3xl tracking-tight">Video Call</h2>
+            <p class="mt-3 max-w-xs text-ash leading-relaxed">
+              Connect remotely. Discuss a piece, explore a commission, or get to know the studio from wherever you are.
+            </p>
+            <ul class="mt-5 space-y-1.5 text-sm text-ash/60">
+              <li class="flex items-center gap-2"><span class="text-brass">—</span> 30 minutes</li>
+              <li class="flex items-center gap-2"><span class="text-brass">—</span> Google Meet</li>
+              <li class="flex items-center gap-2"><span class="text-brass">—</span> Remote</li>
+            </ul>
+          </div>
+          <!-- selected indicator -->
+          <div class="event-card-indicator absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-brass to-brass/0 scale-x-0 origin-left transition-transform duration-500"></div>
+        </button>
+      </div>
+
+      <!-- Cal.com iframe embed -->
+      <div class="w-full" data-reveal>
+        <div class="border border-stone bg-white shadow-sm overflow-hidden relative" style="min-height: 850px;">
+          <!-- Loading state -->
+          <div id="booking-loader" class="absolute inset-0 flex items-center justify-center bg-white z-10">
+            <div class="flex flex-col items-center gap-4">
+              <div class="booking-spinner"></div>
+              <p class="text-sm text-ash/60">Loading booking calendar…</p>
+            </div>
+          </div>
+          <iframe
+            id="booking-iframe"
+            src={`${BOOKING_URL}/rui/studio-visit?embed=inline`}
+            class="w-full border-0"
+            style="min-height: 850px; height: 100%;"
+            title="Book a visit"
+            allow="camera; microphone; fullscreen"
+          ></iframe>
+        </div>
+        <p class="mt-4 text-xs text-ash/60 text-center">
+          Booking via <a href={BOOKING_URL} class="underline decoration-dotted hover:text-brass" target="_blank">Rui Silva Studio</a> — your details are handled privately.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STUDIO CONTEXT ═══ -->
+  <section class="border-t border-stone bg-sand/40 px-6 py-20 md:px-10 md:py-28">
+    <div class="mx-auto max-w-[1600px] grid gap-12 md:grid-cols-2">
+      <div data-reveal>
+        <h2 class="display-3">What to expect</h2>
+      </div>
+      <div class="space-y-8" data-reveal-group>
+        <div data-reveal-item>
+          <span class="label text-brass mb-2 block">01</span>
+          <h3 class="font-display text-xl">A personal welcome</h3>
+          <p class="mt-2 text-ash leading-relaxed max-w-md">
+            Every visit is hosted by Rui himself — not a showroom assistant. You'll see works in progress, feel the materials, and discuss your project directly.
+          </p>
+        </div>
+        <div data-reveal-item>
+          <span class="label text-brass mb-2 block">02</span>
+          <h3 class="font-display text-xl">The workshop, not a gallery</h3>
+          <p class="mt-2 text-ash leading-relaxed max-w-md">
+            This is a working atelier. You may see tools, jigs, and pieces mid-construction alongside finished works. The studio isn't staged — it's real.
+          </p>
+        </div>
+        <div data-reveal-item>
+          <span class="label text-brass mb-2 block">03</span>
+          <h3 class="font-display text-xl">No pressure</h3>
+          <p class="mt-2 text-ash leading-relaxed max-w-md">
+            Visits are for discovery, not sales. Whether you're curious, comparing, or ready to commission — the conversation is genuine.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .event-card.active {
+    border-color: var(--color-brass);
+    box-shadow: 0 0 0 1px var(--color-brass);
+  }
+  .event-card.active .event-card-indicator {
+    transform: scaleX(1);
+  }
+  .booking-spinner {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid var(--color-stone);
+    border-top-color: var(--color-brass);
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<script>
+  const BOOKING_URL = 'https://booking.ruisilvastudio.com';
+
+  function switchEvent(type: string) {
+    const iframe = document.getElementById('booking-iframe') as HTMLIFrameElement;
+    const loader = document.getElementById('booking-loader');
+    if (!iframe || !loader) return;
+
+    // Show loader, update iframe src
+    loader.style.display = 'flex';
+    iframe.src = `${BOOKING_URL}/rui/${type}?embed=inline`;
+
+    // Update card states
+    document.querySelectorAll('.event-card').forEach((card) => {
+      const isTarget = (card as HTMLElement).dataset.event === type;
+      card.classList.toggle('active', isTarget);
+      card.setAttribute('aria-pressed', String(isTarget));
+    });
+  }
+
+  // Hide loader when iframe loads
+  document.getElementById('booking-iframe')?.addEventListener('load', () => {
+    const loader = document.getElementById('booking-loader');
+    if (loader) loader.style.display = 'none';
+  });
+
+  // Card click handlers
+  document.getElementById('pick-studio')?.addEventListener('click', () => switchEvent('studio-visit'));
+  document.getElementById('pick-video')?.addEventListener('click', () => switchEvent('video-call'));
+
+  // Keyboard accessibility
+  document.querySelectorAll('.event-card').forEach((card) => {
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        switchEvent((card as HTMLElement).dataset.event!);
+      }
+    });
+  });
+</script>

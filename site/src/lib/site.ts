@@ -28,6 +28,7 @@ export const NAV = [
   { label: 'Studio Works', href: '/portfolio' },
   { label: 'About', href: '/about' },
   { label: 'Studio Partnership', href: '/studio-partnership' },
+  { label: 'Book a Visit', href: '/booking' },
   { label: 'Contact', href: '/contact' },
 ];
 
