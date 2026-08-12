@@ -18,15 +18,32 @@ const productLd = {
   name: piece.name,
   description: piece.description[0],
   image: piece.images.map((i) => `${SITE.url}${i}`),
+  gtin13: piece.gtin,
   brand: { '@type': 'Brand', name: SITE.name },
   manufacturer: {
     '@type': 'Organization',
     name: SITE.name,
     address: { '@type': 'PostalAddress', addressCountry: 'PT' },
   },
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/MadeToOrder',
+    itemCondition: 'https://schema.org/NewCondition',
+  },
   material: piece.materials.join('; '),
   productionDate: 'Made to order',
   category: 'Collectible Furniture',
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Lusitano Collection', item: `${SITE.url}/lusitano/story` },
+    { '@type': 'ListItem', position: 3, name: piece.name, item: `${SITE.url}/lusitano/${piece.slug}` },
+  ],
 };
 ---
 
@@ -35,7 +52,7 @@ const productLd = {
   description={`${piece.name} — ${piece.short} Handcrafted in Portugal in oak and steel. Made to order.`}
   image={piece.images[0]}
   darkHeader
-  jsonLd={productLd}
+  jsonLd={[productLd, breadcrumbLd]}
 >
   <!-- HERO -->
   <section class="relative flex min-h-[92svh] items-end overflow-hidden bg-night" data-hero>

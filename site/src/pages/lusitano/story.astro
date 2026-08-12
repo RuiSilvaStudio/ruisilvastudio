@@ -11,9 +11,18 @@ const collectionLd = {
   description: 'Strength refined. Practical elegance. Collectible furniture in oak, steel, brass and porcelain, handcrafted in Portugal.',
   url: `${SITE.url}/lusitano/story`,
 };
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Lusitano Collection', item: `${SITE.url}/lusitano/story` },
+  ],
+};
 ---
 
-<Base title="The Lusitano Collection" description="Strength refined. Practical elegance. The story of the Lusitano Collection — honest materials, enduring character, handcrafted in Portugal." darkHeader jsonLd={collectionLd}>
+<Base title="The Lusitano Collection" description="Strength refined. Practical elegance. The story of the Lusitano Collection — honest materials, enduring character, handcrafted in Portugal." darkHeader jsonLd={[collectionLd, breadcrumbLd]}>
   <!-- progress -->
   <div class="fixed top-0 left-0 right-0 z-[990] h-[2px] bg-brass origin-left scale-x-0" data-progress></div>
 

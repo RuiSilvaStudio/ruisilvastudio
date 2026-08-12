@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import SplitLines from '../../components/SplitLines.astro';
+import { JOURNAL, formatDate } from '../../lib/journal';
+import { SITE } from '../../lib/site';
+
+const journalLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Journal — Rui Silva Studio',
+  description: 'Notes from the workshop — craft, materials, process, and the stories behind the pieces.',
+  url: `${SITE.url}/journal`,
+};
+---
+
+<Base title="Journal" description="Notes from the workshop — craft, materials, process, and the stories behind the pieces." jsonLd={journalLd}>
+  <section class="px-6 pt-40 pb-24 md:px-10 md:pt-52 md:pb-36">
+    <div class="mx-auto max-w-[1600px]">
+      <p class="label text-ash mb-6" data-reveal>Journal</p>
+      <SplitLines as="h1" class="display-hero max-w-5xl" text={`Notes from\nthe workshop.`} />
+      <p class="mt-8 max-w-xl text-ash lede" data-reveal>
+        Craft, materials, process, and the stories behind the pieces. Quiet, occasional — this will not flood your feed.
+      </p>
+    </div>
+  </section>
+
+  <section class="px-6 pb-28 md:px-10 md:pb-40">
+    <div class="mx-auto max-w-[1600px]">
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3" data-reveal-group>
+        {JOURNAL.map((article, i) => (
+          <a href={`/journal/${article.slug}`} class="group block" data-reveal-item>
+            <div class="img-frame aspect-[4/3] mb-6">
+              <img
+                src={article.image}
+                alt={article.imageAlt}
+                loading={i < 2 ? 'eager' : 'lazy'}
+                decoding="async"
+                class="transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
+              />
+            </div>
+            <div class="flex items-center gap-3 text-xs text-ash/70 mb-3">
+              <span class="label text-brass">{article.category}</span>
+              <span class="text-ash/40">·</span>
+              <time datetime={article.date}>{formatDate(article.date)}</time>
+            </div>
+            <h2 class="font-display text-xl md:text-2xl group-hover:text-brass transition-colors duration-500">
+              {article.title}
+            </h2>
+            <p class="mt-2 text-sm text-ash leading-relaxed">
+              {article.excerpt}
+            </p>
+            <span class="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-ash/60 group-hover:text-brass transition-colors duration-500">
+              Read
+              <svg width="20" height="8" viewBox="0 0 20 8" fill="none" class="transition-transform duration-500 group-hover:translate-x-1">
+                <path d="M15 1l4 4-4 4" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M0 5h18" stroke="currentColor" stroke-width="1.2"/>
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

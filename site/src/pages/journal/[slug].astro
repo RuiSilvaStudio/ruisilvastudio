@@ -1,0 +1,111 @@
+---
+import Base from '../../layouts/Base.astro';
+import SplitLines from '../../components/SplitLines.astro';
+import { JOURNAL, formatDate, type JournalArticle } from '../../lib/journal';
+import { SITE } from '../../lib/site';
+
+export function getStaticPaths() {
+  return JOURNAL.map((article) => ({ params: { slug: article.slug }, props: { article } }));
+}
+
+const { article } = Astro.props;
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.title,
+  description: article.excerpt,
+  image: `${SITE.url}${article.image}`,
+  datePublished: article.date,
+  author: {
+    '@type': 'Person',
+    name: article.author,
+    url: SITE.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${SITE.url}/journal/${article.slug}`,
+  },
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Journal', item: `${SITE.url}/journal` },
+    { '@type': 'ListItem', position: 3, name: article.title, item: `${SITE.url}/journal/${article.slug}` },
+  ],
+};
+---
+
+<Base title={article.title} description={article.excerpt} image={article.image} darkHeader jsonLd={[articleLd, breadcrumbLd]}>
+  <!-- HERO -->
+  <section class="relative flex min-h-[70svh] items-end overflow-hidden bg-night">
+    <div class="absolute inset-0">
+      <img
+        src={article.image}
+        alt={article.imageAlt}
+        class="absolute inset-0 h-full w-full object-cover"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-night/95 via-night/40 to-night/30"></div>
+    </div>
+    <div class="relative z-10 mx-auto w-full max-w-[1600px] px-6 pb-16 md:px-10 md:pb-20">
+      <div class="flex items-center gap-3 text-xs text-ivory/90 mb-5 [text-shadow:0_1px_12px_rgba(0,0,0,0.45)]" data-hero-fade>
+        <span class="label text-brass">{article.category}</span>
+        <span class="text-ivory/50">·</span>
+        <time datetime={article.date}>{formatDate(article.date)}</time>
+      </div>
+      <h1 class="display-hero text-ivory max-w-5xl">
+        <span class="block overflow-hidden pb-[0.06em] -mb-[0.06em]"><span class="line-inner block">{article.title.split(' — ')[0]}</span></span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-ivory/85 lede font-light [text-shadow:0_1px_12px_rgba(0,0,0,0.45)]" data-hero-fade>
+        {article.subtitle}
+      </p>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <article class="px-6 py-20 md:px-10 md:py-32">
+    <div class="mx-auto max-w-[720px]">
+      <div class="space-y-6 text-ash lede leading-relaxed" data-reveal-group>
+        {article.content.map((paragraph, i) => (
+          <>
+            <p data-reveal-item>{paragraph}</p>
+            {(article.inlineImages ?? [])
+              .filter((img) => img.after === i)
+              .map((img) => (
+                <figure class="!my-12" data-reveal-item>
+                  <div class="img-frame">
+                    <img src={img.src} alt={img.alt} loading="lazy" decoding="async" class="max-h-[80vh] w-full object-cover" />
+                  </div>
+                  {img.caption && (
+                    <figcaption class="mt-3 text-xs text-ash/60 leading-relaxed">{img.caption}</figcaption>
+                  )}
+                </figure>
+              ))}
+          </>
+        ))}
+      </div>
+
+      <hr class="my-16 border-stone" />
+
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between" data-reveal>
+        <p class="text-sm text-ash/70">
+          Written by <span class="text-ink font-medium">{article.author}</span>
+          <span class="text-ash/40"> · </span>
+          <time datetime={article.date}>{formatDate(article.date)}</time>
+        </p>
+        <a href="/journal" class="link-sweep label text-ink inline-flex items-center gap-2">
+          ← Back to Journal
+        </a>
+      </div>
+    </div>
+  </article>
+</Base>

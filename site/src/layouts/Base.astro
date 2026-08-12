@@ -29,19 +29,47 @@ const fullTitle = title === SITE.name ? `${SITE.name} | ${SITE.tagline}` : `${ti
 
 const orgLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': ['Organization', 'LocalBusiness'],
+  '@id': `${SITE.url}/#organization`,
   name: SITE.name,
   url: SITE.url,
+  sameAs: SITE.social.map((s) => s.url),
   email: SITE.email,
   telephone: SITE.phoneHref,
   slogan: SITE.tagline,
   foundingDate: String(SITE.founded),
+  priceRange: '€€€',
   address: {
     '@type': 'PostalAddress',
     streetAddress: SITE.address.street,
     addressLocality: SITE.address.locality,
     postalCode: SITE.address.postal,
     addressCountry: 'PT',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 41.4596,
+    longitude: -8.2984,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '10:00',
+      closes: '15:00',
+    },
+  ],
+  areaServed: [
+    { '@type': 'Country', name: 'Portugal' },
+    { '@type': 'Place', name: 'Europe' },
+  ],
+  founder: {
+    '@type': 'Person',
+    name: 'Rui Silva',
+    url: 'https://www.linkedin.com/in/ruisilvagmr/',
+    jobTitle: 'Founder & Designer',
+    worksFor: { '@type': 'Organization', name: SITE.name },
+    sameAs: ['https://www.linkedin.com/in/ruisilvagmr/', `${SITE.url}`],
   },
 };
 ---
@@ -55,6 +83,14 @@ const orgLd = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MCD2ZFT6');</script>
+    <!-- End Google Tag Manager -->
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -86,6 +122,10 @@ const orgLd = {
     ))}
   </head>
   <body class="grain">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCD2ZFT6"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <Preloader />
     <Header dark={darkHeader} />
     <main id="main">

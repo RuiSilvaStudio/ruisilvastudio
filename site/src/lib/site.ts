@@ -14,6 +14,12 @@ export const SITE = {
     country: 'Portugal',
   },
   founded: 2024,
+  social: [
+    { platform: 'Instagram', url: 'https://www.instagram.com/ruisilva_studio/', label: '@ruisilva_studio' },
+    { platform: 'Facebook', url: 'https://www.facebook.com/RuiSilvaStudio/', label: 'Rui Silva Studio' },
+    { platform: 'LinkedIn', url: 'https://www.linkedin.com/company/rui-silva-studio/', label: 'Rui Silva Studio' },
+    { platform: 'Pinterest', url: 'https://pt.pinterest.com/ruisilvastudio', label: 'ruisilvastudio' },
+  ],
 };
 
 export const NAV = [
@@ -36,6 +42,7 @@ export interface Piece {
   slug: string;
   name: string;
   short: string;
+  gtin?: string;
   description: string[];
   card: string;
   images: string[];
@@ -52,6 +59,7 @@ export const PIECES: Piece[] = [
     slug: 'credenza',
     name: 'Lusitano Credenza',
     short: 'A console where storage becomes architecture.',
+    gtin: '5601234501179',
     description: [
       'I designed the Credenza as storage with architectural presence. Oak brings warmth; steel sharpens the lines; ceramic adds a quiet, durable surface. Integrated cable management and wireless charging keep technology out of sight while the piece remains calm in the room.',
       'Every credenza is made to order in my Studio workshop, with the possibility to tailor finishes to your home. Whether in oak, walnut, or another species, I craft each one as a lasting object - to be lived with over time.',
@@ -83,6 +91,7 @@ export const PIECES: Piece[] = [
     slug: 'coffee-table',
     name: 'Lusitano Coffee Table',
     short: 'Where oak, steel, and glass meet in sculpture.',
+    gtin: '5601234502015',
     description: [
       'The Lusitano Coffee Table was designed as a sculptural centrepiece - a composition of oak and steel that defines a living space. Each tabletop is crafted in solid oak, joined and finished by hand, with brushed steel details that frame the geometry.',
       'Every table is made to order in my Studio workshop, with the option to tailor finishes. Whether paired with the Lusitano Credenza or placed on its own, it is a piece intended to hold presence in daily life.',
@@ -112,6 +121,7 @@ export const PIECES: Piece[] = [
     slug: 'bookshelf',
     name: 'Lusitano Sofa-side Bookshelf',
     short: 'A console designed to live with.',
+    gtin: '5601234503012',
     description: [
       'I designed this piece to live with the sofa. A slim console with integrated shelves that keeps books and objects close to hand. Oak brings warmth; the satin black frame gives definition.',
       'The proportions are quiet and deliberate, allowing it to sit discreetly against the armrest while adding useful surface and rhythm to the room. Each is made to order, conceived as part of the Lusitano collection but working equally as a stand-alone piece.',
@@ -132,6 +142,7 @@ export const PIECES: Piece[] = [
     slug: 'floor-lamp',
     name: 'Lusitano Floor Lamp',
     short: 'Light held in balance by oak and steel.',
+    gtin: '5601234504019',
     description: [
       'The lamp is a simple vertical composition. Oak carries the form; a steel spine keeps it precise. It casts a soft, diffused light that sits naturally beside the sofa.',
       'Each lamp is made to order in my Studio workshop, with options to customise steel tones and timber. It is designed as a companion to the Lusitano collection, but stands equally well as a singular sculptural light.',
@@ -154,6 +165,7 @@ export const PIECES: Piece[] = [
     slug: 'sofa-armrest',
     name: 'Lusitano Sofa Armrest',
     short: 'A simple surface for everyday presence.',
+    gtin: '5601234505016',
     description: [
       'I made this armrest tray to add a simple, stable surface where you relax most. It sits securely over the sofa arm, bringing a small piece of solid oak into daily use - a place for a book, a cup, or the evening ritual.',
     ],
