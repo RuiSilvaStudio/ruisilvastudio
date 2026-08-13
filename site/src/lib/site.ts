@@ -3,7 +3,7 @@ export const SITE = {
   tagline: 'Furniture as Cultural Infrastructure',
   description:
     'Contemporary design practice creating one-of-a-kind collectible furniture. Handcrafted in Portugal in limited numbers — white oak, steel, brass and porcelain.',
-  url: 'https://www.ruisilvastudio.com',
+  url: import.meta.env.PUBLIC_SITE_URL ?? 'https://www.ruisilvastudio.com',
   email: 'rui.silva@ruisilvastudio.com',
   phone: '(+351) 91 411 39 33',
   phoneHref: '+351914113933',

@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import SplitLines from '../components/SplitLines.astro';
 import { SITE } from '../lib/site';
 
-const BOOKING_URL = 'https://booking.ruisilvastudio.com';
+const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL ?? 'https://booking.ruisilvastudio.com';
 
 const bookingLd = {
   '@context': 'https://schema.org',
@@ -187,7 +187,7 @@ const bookingLd = {
 </style>
 
 <script>
-  const BOOKING_URL = 'https://booking.ruisilvastudio.com';
+  const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL ?? 'https://booking.ruisilvastudio.com';
 
   function switchEvent(type: string) {
     const iframe = document.getElementById('booking-iframe') as HTMLIFrameElement;

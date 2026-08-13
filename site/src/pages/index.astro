@@ -215,7 +215,7 @@ rebuilt by hand.`}
           New pieces, collaboration launches and studio news. Quiet, occasional - this will not flood your inbox.
         </p>
       </div>
-      <form class="newsletter-form flex flex-col gap-3" data-reveal data-endpoint="https://forms.ruisilvastudio.com/api/newsletter" novalidate>
+      <form class="newsletter-form flex flex-col gap-3" data-reveal data-endpoint={`${import.meta.env.PUBLIC_FORMS_URL ?? 'https://forms.ruisilvastudio.com'}/api/newsletter`} novalidate>
         <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <div class="flex flex-col gap-3 sm:flex-row sm:items-start">
           <div class="field-group flex-1 min-w-0">

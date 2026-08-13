@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "npm --prefix site run build",
+    "build:staging": "npm --prefix site run build:staging",
     "dev": "npm --prefix site run dev"
   }
 }

@@ -25,3 +25,6 @@ Thumbs.db
 # ── Local-only folders (do NOT go to GitHub) ────────────
 squarespace-content-scraping/
 other assets/
+
+!site/.env
+!site/.env.staging

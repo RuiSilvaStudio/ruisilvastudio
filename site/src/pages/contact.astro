@@ -24,7 +24,7 @@ today.`} />
       <div class="mt-20 grid gap-16 lg:grid-cols-12">
         <!-- Form -->
         <div class="lg:col-span-7" data-reveal>
-          <form id="contact-form" class="grid gap-5 sm:grid-cols-2" novalidate data-endpoint="https://forms.ruisilvastudio.com/api/contact">
+          <form id="contact-form" class="grid gap-5 sm:grid-cols-2" novalidate data-endpoint={`${import.meta.env.PUBLIC_FORMS_URL ?? 'https://forms.ruisilvastudio.com'}/api/contact`}>
             <input type="text" name="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
             <div class="sm:col-span-1 field-group">
