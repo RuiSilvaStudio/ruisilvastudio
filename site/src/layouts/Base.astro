@@ -26,6 +26,7 @@ const {
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const ogImage = new URL(image, SITE.url).href;
 const fullTitle = title === SITE.name ? `${SITE.name} | ${SITE.tagline}` : `${title} — ${SITE.name}`;
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID ?? 'G-B9Y18JXHYS';
 
 const orgLd = {
   '@context': 'https://schema.org',
@@ -84,13 +85,19 @@ const orgLd = {
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MCD2ZFT6');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Google Analytics 4 -->
+    {GA4_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+        <script define:vars={{ GA4_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', GA4_ID);
+        </script>
+      </>
+    )}
+    <!-- End Google Analytics 4 -->
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -122,10 +129,6 @@ const orgLd = {
     ))}
   </head>
   <body class="grain">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCD2ZFT6"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <Preloader />
     <Header dark={darkHeader} />
     <main id="main">
